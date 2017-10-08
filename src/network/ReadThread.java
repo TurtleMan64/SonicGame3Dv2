@@ -124,7 +124,7 @@ public class ReadThread implements Runnable
 		}
         catch (IOException e)
         {
-        	e.printStackTrace();
+        	//e.printStackTrace();
 			NetworkManager.disconnect();
 		}
 	}
@@ -137,7 +137,7 @@ public class ReadThread implements Runnable
 		}
 		catch (IOException e)
 		{
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		
 		try
@@ -146,7 +146,7 @@ public class ReadThread implements Runnable
 		}
 		catch (IOException e)
 		{
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 }

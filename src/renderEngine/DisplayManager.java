@@ -1,8 +1,11 @@
 package renderEngine;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 
@@ -29,6 +32,11 @@ public class DisplayManager
 	
 	private static long lastFrameTime;
 	private static long delta;
+	
+	private static int F_Width = 1920;
+	private static int F_Height = 1080;
+	private static int F_BPP = 32;
+	private static int F_Frequency = 60;
 	
 	
 	public static void createDisplay()
@@ -62,8 +70,10 @@ public class DisplayManager
 		{
 			DisplayMode[] modes = Display.getAvailableDisplayModes();
 			String[] names = new String[modes.length];
+			
+			int defaultIndex = 0;
 			 
-			for (int i=0;i<modes.length;i++)
+			for (int i=0; i < modes.length; i++)
 			{
 			    DisplayMode current = modes[i];
 			    //System.out.println(current.getWidth() + "x" + current.getHeight() + "x" +
@@ -71,6 +81,14 @@ public class DisplayManager
 			    
 			    names[i] = (current.getWidth() + "x" + current.getHeight() + "x" +
                         current.getBitsPerPixel() + " " + current.getFrequency() + "Hz");
+			    
+			    if (current.getWidth() == F_Width &&
+			    	current.getHeight() == F_Height &&
+			    	current.getBitsPerPixel() == F_BPP &&
+			    	current.getFrequency() == F_Frequency)
+			    {
+			    	defaultIndex = i;
+			    }
 			}
 			
 			
@@ -83,7 +101,7 @@ public class DisplayManager
 				        JOptionPane.QUESTION_MESSAGE,
 				        null,
 				        names,
-				        names[0]);
+				        names[defaultIndex]);
 				
 				if (modeToUse == null)
 				{
@@ -123,7 +141,7 @@ public class DisplayManager
 			Display.create(new PixelFormat().withDepthBits(24));
 			//Display.create(new PixelFormat(), attribs);
 			//Display.create();
-			Display.setTitle("version 0.0008");
+			Display.setTitle("version 0.0009");
 			System.out.println("Using OpenGL version "+GL11.glGetString(GL11.GL_VERSION));
 			GL11.glEnable(GL13.GL_MULTISAMPLE);
 			//Display.setLocation(2100, 64);
@@ -234,6 +252,22 @@ public class DisplayManager
 					else if (info[0].equals("Anti-Aliasing_Samples"))
 					{
 						SAMPLES = Integer.parseInt(info[1]);
+					}
+					else if (info[0].equals("F_Width"))
+					{
+						F_Width = Integer.parseInt(info[1]);
+					}
+					else if (info[0].equals("F_Height"))
+					{
+						F_Height = Integer.parseInt(info[1]);
+					}
+					else if (info[0].equals("F_BitsPerPixel"))
+					{
+						F_BPP = Integer.parseInt(info[1]);
+					}
+					else if (info[0].equals("F_Frequency"))
+					{
+						F_Frequency = Integer.parseInt(info[1]);
 					}
 					else if (info[0].equals("VSync"))
 					{

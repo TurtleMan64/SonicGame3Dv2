@@ -52,7 +52,7 @@ public class WriteThread implements Runnable
 		}
 		catch (IOException e1)
 		{
-			e1.printStackTrace();
+			//e1.printStackTrace();
 			NetworkManager.disconnect();
 			loop = false;
 		}
@@ -142,7 +142,7 @@ public class WriteThread implements Runnable
 			}
 			catch (IOException e)
 			{
-				e.printStackTrace();
+				//e.printStackTrace();
 				NetworkManager.disconnect();
 				loop = false;
 			}
@@ -162,7 +162,7 @@ public class WriteThread implements Runnable
 		}
 		catch (IOException e)
 		{
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		
 		try
@@ -171,7 +171,7 @@ public class WriteThread implements Runnable
 		}
 		catch (IOException e)
 		{
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 }
