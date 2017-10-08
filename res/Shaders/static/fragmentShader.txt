@@ -1,0 +1,254 @@
+#version 400 core
+
+in vec2 pass_textureCoords;
+in vec3 surfaceNormal;
+in vec3 toLightVector[6];
+in vec3 toCameraVector;
+in float visibility;
+in vec3 worldposition;
+in vec4 shadowCoords;
+in vec4 shadowCoords2;
+
+out vec4 out_Colour;
+out vec4 out_BrightColour;
+
+uniform sampler2D textureSampler;
+uniform vec3 lightColour[6];
+uniform vec3 attenuation[6];
+uniform float shineDamper;
+uniform float reflectivity;
+uniform vec3 skyColour;
+uniform sampler2D shadowMap;
+uniform sampler2D shadowMap2;
+uniform int semiTransparent;
+uniform float glowAmount;
+
+const float waterHeight = 0.0f;
+
+const int renderMode = 0;
+
+const int pcfCount = 2;
+const float totalTexels = (pcfCount * 2.0 + 1.0) * (pcfCount * 2.0 + 1.0);
+
+const int pcfCount2 = 2;
+const float totalTexels2 = (pcfCount2 * 2.0 + 1.0) * (pcfCount2 * 2.0 + 1.0);
+
+void main(void)
+{
+	
+	//higher quality close range shadows
+	float mapSize2 = 2048*2;
+	float texelSize2 = 1.0 / mapSize2;
+	float total2 = 0.0;
+	
+	for(int x = -pcfCount2; x <= pcfCount2; x++)
+	{
+		for(int y = -pcfCount2; y <= pcfCount2; y++)
+		{
+			float objectNearestLight = texture(shadowMap2, shadowCoords2.xy + vec2(x, y) * texelSize2).r;
+			if(shadowCoords2.z > objectNearestLight+0.0025)  //original = 0.00125
+			{
+				total2 += 1.0;
+			}
+		}
+	}
+	total2 /= totalTexels2;
+	
+	
+	float mapSize = 2048*4; //HD = 2048*4
+	float texelSize = 1.0 / mapSize;
+	float total = 0.0;
+	
+	for(int x = -pcfCount; x <= pcfCount; x++)
+	{
+		for(int y = -pcfCount; y <= pcfCount; y++)
+		{
+			float objectNearestLight = texture(shadowMap, shadowCoords.xy + vec2(x, y) * texelSize).r;
+			if(shadowCoords.z > objectNearestLight+0.00125)  //original = 0.0025
+			{
+				total += 1.0;
+			}
+		}
+	}
+	total /= totalTexels;
+	
+	
+	float lightFactor = 1.0 - (max(total * shadowCoords.w, total2 * shadowCoords2.w) * 0.4); //0.4 being how dark the shadows are
+	//float lightFactor = 1.0 - (total * shadowCoords.w * 0.4);
+	
+	vec3 unitNormal = normalize(surfaceNormal);
+	vec3 unitVectorToCamera = normalize(toCameraVector);
+	
+	vec3 totalDiffuse = vec3(0.0);
+	vec3 totalSpecular = vec3(0.0);
+	
+	//sun and moon lights, no attenuation
+	for(int i=0; i<2; i++)
+	{
+		float distance = length(toLightVector[i]);
+		vec3 unitLightVector = normalize(toLightVector[i]);
+		float nDotl = dot(unitNormal, unitLightVector);
+		
+		float brightness = nDotl*0.5+0.5;  //two different types of lighting options
+		//float brightness = max(nDotl, 0.0);  //two different types of lighting options
+		
+		vec3 lightDirection = -unitLightVector;
+		vec3 reflectedLightDirection = reflect(lightDirection, unitNormal);
+		float specularFactor = dot(reflectedLightDirection, unitVectorToCamera);
+		
+		specularFactor = max(specularFactor, 0.0);
+		float dampedFactor = pow(specularFactor, shineDamper);
+			
+		totalDiffuse = totalDiffuse + (brightness * lightColour[i]);
+		totalSpecular = totalSpecular + (dampedFactor * reflectivity * lightColour[i]);
+	}
+	
+	float depthFactor = 1+((worldposition.y-waterHeight)*0.0025);
+	depthFactor = clamp(depthFactor, 0.1, 1.0);
+	depthFactor = 1.0;
+
+	totalDiffuse = mix(vec3(0.0, 0.0, 32/255.0), totalDiffuse, depthFactor);
+	totalSpecular = mix(vec3(0.0, 0.0, 32/255.0), totalSpecular, depthFactor);
+	
+	//rest of the lights, attenuation
+	for(int i=2; i<6; i++)
+	{
+		float distance = length(toLightVector[i]);
+		float attFactor = attenuation[i].x + (attenuation[i].y * distance) + (attenuation[i].z * distance*distance);
+		vec3 unitLightVector = normalize(toLightVector[i]);
+		float nDotl = dot(unitNormal, unitLightVector);
+		
+		float brightness = nDotl*0.5+0.5;  //two different types of lighting options
+		//float brightness = max(nDotl, 0.0);  //two different types of lighting options
+		
+		vec3 lightDirection = -unitLightVector;
+		vec3 reflectedLightDirection = reflect(lightDirection, unitNormal);
+		float specularFactor = dot(reflectedLightDirection, unitVectorToCamera);
+		
+		specularFactor = max(specularFactor, 0.0);
+		float dampedFactor = pow(specularFactor, shineDamper);
+		
+		totalDiffuse = totalDiffuse + (brightness * lightColour[i])/attFactor;
+		totalSpecular = totalSpecular + (dampedFactor * reflectivity * lightColour[i])/attFactor;
+	}
+	
+	//make more ambient light happen during the daytime, less at night
+	float ambientLight = 0.5+0.5*dot(vec3(0, 1, 0), normalize(toLightVector[0]));
+	ambientLight = (0.02+ambientLight*0.3)*(depthFactor);
+	
+	totalDiffuse = max(totalDiffuse * lightFactor, ambientLight); //Apply ambient lighting to total diffuse
+	totalSpecular = totalSpecular * (lightFactor - 0.6) * 2.5; //Make no specular lighting happen it the shadow
+	
+	vec4 textureColour = texture(textureSampler, pass_textureCoords);
+	if(semiTransparent == 0 && glowAmount == 0)
+	{
+		if(textureColour.a < 0.9) //0.7 //0.305 old as of 3/1/2016
+		{
+			discard;
+		}
+		textureColour.a = 1;
+	}
+	
+	vec3 toBeOutput = (totalDiffuse)*textureColour.rgb+totalSpecular;
+	toBeOutput = mix(skyColour, toBeOutput, visibility);
+	float brightness = (toBeOutput.r * 0.2126) + (toBeOutput.g * 0.7152) + (toBeOutput.b * 0.0722);
+	out_BrightColour = vec4((toBeOutput * brightness * brightness * brightness * brightness).rgb, 1.0);
+	if(glowAmount > 0.1)
+	{
+		out_BrightColour = vec4((textureColour.rgb+totalSpecular)*glowAmount, textureColour.a);
+		//out_BrightColour = textureColour + vec4(totalSpecular, textureColour.a);
+		totalDiffuse = vec3(glowAmount);
+	}
+	//possible optimization put brightness calculator (two lines right above this if) in an else with the if
+	//not sure if it would be faster to branch, or always do the brightness calculation
+	
+	out_Colour = vec4(totalDiffuse, textureColour.a) * textureColour + vec4(totalSpecular, textureColour.a);
+	out_Colour = mix(vec4(skyColour, textureColour.a), out_Colour, visibility);
+	
+	
+	out_Colour = clamp(out_Colour, 0.0, 1.0);
+	//out_Colour = 0.5f+(0.5*sin((out_Colour*3.14159)-1.570795));//post effects aw yea
+	
+	
+	//if(glowAmount > 0.5)
+	{
+		//float factor = (1.0)/(max(out_Colour.b, max(out_Colour.r, out_Colour.g)));
+		//out_Colour = out_Colour*factor;
+	}
+	
+	if(worldposition.y < waterHeight)
+	{
+		//if (renderMode == 0)
+		//{
+		//	//original 
+		//	float factor = 1+((worldposition.y-waterHeight)*0.0025);
+		//	factor = clamp(factor, 0.1, 1.0);
+		//	out_Colour = mix(vec4(0.0, 0.0, 32/255.0, textureColour.a), out_Colour, factor);
+		//}
+		//else if (renderMode == 1)
+		//{
+		//	out_Colour = mix(vec4(81/255.0, 253/255.0, 253/255.0, textureColour.a), out_Colour, 0.4);//72/255.0, 247/255.0, 248/255.0
+		//	float factor = 1+((worldposition.y-waterHeight)*0.0025);
+		//	factor = clamp(factor, 0.2, 1.0);
+		//	out_Colour = mix(vec4(41/255.0, 178/255.0, 255/255.0, textureColour.a), out_Colour, factor);
+		//}
+		//else if (renderMode == 3)
+		//{
+		//	discard;
+		//}
+		
+		switch (renderMode)
+		{
+			case 0:
+				float factor1 = 1+((worldposition.y-waterHeight)*0.0025);
+				factor1 = clamp(factor1, 0.1, 1.0);
+				out_Colour = mix(vec4(0.0, 0.0, 32/255.0, textureColour.a), out_Colour, factor1);
+				break;
+				
+			case 1:
+				out_Colour = mix(vec4(81/255.0, 253/255.0, 253/255.0, textureColour.a), out_Colour, 0.4);
+				float factor2 = 1+((worldposition.y-waterHeight)*0.0025);
+				factor2 = clamp(factor2, 0.2, 1.0);
+				out_Colour = mix(vec4(41/255.0, 178/255.0, 255/255.0, textureColour.a), out_Colour, factor2);
+				break;
+				
+			case 3:
+				//discard;
+				break;
+				
+			default:
+				break;
+		}
+		//float factor = 0;
+		//
+		//switch (renderMode)
+		//{
+		//	case 0:
+		//		//original 
+		//		factor = 1+((worldposition.y-waterHeight)*0.0025);
+		//		factor = clamp(factor, 0.1, 1.0);
+		//		out_Colour = mix(vec4(0.0, 0.0, 32/255.0, textureColour.a), out_Colour, factor);
+		//		
+		//		//aqua color added
+		//		//float factor = 1+((worldposition.y-waterHeight)*0.25);
+		//		//factor = clamp(factor, 0.1, 1.0);
+		//		//out_Colour = mix(vec4(28/255.0, 162/255.0, 187/255.0, textureColour.a), out_Colour, factor);
+		//		break;
+        //
+		//	case 1:
+		//		out_Colour = mix(vec4(81/255.0, 253/255.0, 253/255.0, textureColour.a), out_Colour, 0.4);//72/255.0, 247/255.0, 248/255.0
+		//		factor = 1+((worldposition.y-waterHeight)*0.0025);
+		//		factor = clamp(factor, 0.2, 1.0);
+		//		//out_Colour*=factor;
+		//		out_Colour = mix(vec4(41/255.0, 178/255.0, 255/255.0, textureColour.a), out_Colour, factor);
+		//		break;
+        //
+		//	case 3:
+		//		discard;
+		//		break;
+		//	
+		//	default:
+		//		break;
+		//}
+	}
+}

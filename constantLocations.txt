@@ -1,0 +1,19 @@
+for near and far projection:
+
+
+renderEngine-MasterRenderer
+water-waterFragment
+
+
+
+
+
+
+for shadow map sizes and transition ranges:
+
+
+shaders-fragmentShader
+shaders-vertexShader
+water-waterVertex
+shadows-ShadowMapMasterRenderer
+shadows2-ShadowMapMasterRenderer2

@@ -1,0 +1,18 @@
+#version 150
+
+layout (lines) in;
+
+layout (triangle_strip, max_verticies = 8) out;
+
+in vec3 baseColour[];
+
+out vec3colour;
+
+uniform mat4 modelMatrix;
+uniform mat4 projectionMatrix;
+uniform mat4 viewMatrix;
+
+void main(void)
+{
+	
+}

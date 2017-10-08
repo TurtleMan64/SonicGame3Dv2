@@ -1,0 +1,72 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# File Created: 01.07.2016 17:40:42
+
+newmtl Eye_Eye_png_Eye_png
+	Ns 21.5686
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 0.8000 0.8000 0.8000
+	Ks 1.0000 1.0000 1.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\Anders\Desktop\Models\SonicLow\Textures\Eye.png
+	map_Kd C:\Users\Anders\Desktop\Models\SonicLow\Textures\Eye.png
+
+newmtl Hand_Hand_png_Hand_png
+	Ns 92.1569
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\Anders\Desktop\Models\SonicLow\Textures\Hand.png
+	map_Kd C:\Users\Anders\Desktop\Models\SonicLow\Textures\Hand.png
+
+newmtl Face_FaceA_png_FaceA_png
+	Ns 21.5686
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.2500 0.2500 0.2500
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\Anders\Desktop\Models\SonicLow\Textures\FaceA.png
+	map_Kd C:\Users\Anders\Desktop\Models\SonicLow\Textures\FaceA.png
+
+newmtl Shoe_She_pngs_She_png
+	Ns 21.5686
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.2500 0.2500 0.2500
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\Anders\Desktop\Models\SonicLow\Textures\She.png
+	map_Kd C:\Users\Anders\Desktop\Models\SonicLow\Textures\She.png
+
+newmtl Skin_Belly_png_Belly_png
+	Ns 21.5686
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.2500 0.2500 0.2500
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\Anders\Desktop\Models\SonicLow\Textures\Belly.png
+	map_Kd C:\Users\Anders\Desktop\Models\SonicLow\Textures\Belly.png

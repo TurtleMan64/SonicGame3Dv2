@@ -1,0 +1,92 @@
+#version 400 core
+
+in vec3 position;
+in vec2 textureCoords;
+in vec3 normal;
+
+//out vec3 colour
+out vec2 pass_textureCoords;
+out vec3 surfaceNormal;
+out vec3 toLightVector[6];
+out vec3 toCameraVector;
+out float visibility;
+out vec3 worldposition;
+out vec4 shadowCoords;
+out vec4 shadowCoords2;
+
+uniform mat4 transformationMatrix;
+uniform mat4 projectionMatrix;
+uniform mat4 viewMatrix;
+uniform mat4 shadowSpaceMatrix;
+uniform vec3 lightPosition[6];
+
+uniform float useFakeLighting;
+
+uniform vec4 clipPlane;
+
+uniform mat4 toShadowMapSpace;
+uniform mat4 toShadowMapSpace2;
+
+uniform float texOffX; //for use in animation of the texture coordinates
+uniform float texOffY;
+
+//const float density = 0.0015;
+//const float gradient = 1.0;
+
+const float density = 0.00005;//0.00015
+const float gradient = 2.0;//
+
+const float shadowDistance = 2000.0;
+const float transitionDistance = 100.0; //10.0 original
+
+const float shadowDistance2 = 180.0;
+const float transitionDistance2 = 50.0;
+
+void main(void)
+{
+
+	vec4 worldPosition = transformationMatrix * vec4(position, 1.0);
+	shadowCoords = toShadowMapSpace * worldPosition;
+	shadowCoords2 = toShadowMapSpace2 * worldPosition;
+	
+	gl_ClipDistance[0] = dot(worldPosition, clipPlane);
+	
+	vec4 positionRelativeToCam = viewMatrix * worldPosition;
+	worldposition = worldPosition.xyz;
+	
+	gl_Position = projectionMatrix * positionRelativeToCam;
+	
+	pass_textureCoords.x = textureCoords.x+texOffX;
+	pass_textureCoords.y = textureCoords.y+texOffY;
+	
+	vec3 actualNormal = normal;
+	if(useFakeLighting > 0.5)
+	{
+		actualNormal = vec3(0.0, 1.0, 0.0);
+	}
+	//actualNormal.y = (actualNormal.y*0.75)+0.5;
+	//actualNormal = normalize(actualNormal);
+	
+	
+	surfaceNormal = (transformationMatrix * vec4(actualNormal, 0.0)).xyz;
+	
+	for(int i = 0; i < 6; i++)
+	{
+		toLightVector[i] = lightPosition[i] - worldPosition.xyz;
+	}
+	toCameraVector = (inverse(viewMatrix) * vec4(0.0, 0.0, 0.0, 1.0)).xyz - worldPosition.xyz;
+	
+	float distance = length(positionRelativeToCam.xyz);
+	visibility = exp(-pow((distance*density), gradient));
+	visibility = clamp(visibility, 0.0, 1.0);
+	
+	distance = distance - (shadowDistance - transitionDistance);
+	distance = distance / transitionDistance;
+	shadowCoords.w = clamp(1.0-distance, 0.0, 1.0);
+	
+	float distance2 = length(positionRelativeToCam.xyz);
+	
+	distance2 = distance2 - (shadowDistance2 - transitionDistance2);
+	distance2 = distance2 / transitionDistance2;
+	shadowCoords2.w = clamp(1.0-distance2, 0.0, 1.0);
+}
