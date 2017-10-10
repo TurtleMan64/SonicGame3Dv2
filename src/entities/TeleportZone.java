@@ -39,10 +39,4 @@ public class TeleportZone extends Entity
 			player.stopMoving();
 		}
 	}
-	
-	public void respawn()
-	{
-		super.respawn();
-		setVisibility(false);
-	}
 }

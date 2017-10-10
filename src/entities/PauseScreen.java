@@ -78,6 +78,8 @@ public class PauseScreen
 	private static GUIText textMechaSonic = null;
 	private static GUIText textDage4Aquatic = null;
 	
+	private static boolean shouldPause = false;
+	
 	public static void init()
 	{
 		font = new FontType(MainGameLoop.gameLoader.loadTexture("Fonts/vipnagorgialla"), "Fonts/vipnagorgialla");
@@ -86,18 +88,22 @@ public class PauseScreen
 	
 	public static void step()
 	{
-		if (Input.startInput && !Input.previousStartInput)
+		if (shouldPause == true)
 		{
+			shouldPause = false;
 			if(MainGameLoop.gameState == MainGameLoop.gameStates.paused)
 			{
 				unpause();
-				//AudioRes.resumeAllSounds();
 			}
 			else if(MainGameLoop.gameState == MainGameLoop.gameStates.running)
 			{
 				pause();
-				//AudioRes.pauseAllSounds();
 			}
+		}
+		
+		if (Input.startInput && !Input.previousStartInput)
+		{
+			shouldPause = true;
 		}
 		
 	    if (MainGameLoop.gameState == MainGameLoop.gameStates.paused)
@@ -183,7 +189,8 @@ public class PauseScreen
 						switch (menuSelection)
 						{
 							case 0:
-								unpause();
+								//unpause();
+								shouldPause = true;
 								break;
 								
 							case 1:
@@ -363,7 +370,8 @@ public class PauseScreen
 			{
 				if (menuDisplayID == ROOT)
 				{
-					unpause();
+					shouldPause = true;
+					//unpause();
 				}
 				else if (menuDisplayID != ROOT)
 				{
