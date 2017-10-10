@@ -8,6 +8,7 @@ import fontMeshCreator.FontType;
 import fontMeshCreator.GUIText;
 import guis.GuiTexture;
 import toolbox.AudioRes;
+import toolbox.Input;
 import toolbox.Joystick;
 import toolbox.LevelLoader;
 
@@ -49,7 +50,6 @@ public class PauseScreen
 	private static int moveYPrevious = 0;
 	private static boolean selectInputPrevious = false;
 	private static boolean backInputPrevious = false;
-	private static boolean startInputPrevious = false;
 	
 	public static FontType font;
 	
@@ -71,6 +71,7 @@ public class PauseScreen
 	private static GUIText textWeaponsBed = null;
 	private static GUIText textMetalHarbor = null;
 	private static GUIText textBOB = null;
+	private static GUIText textRainbowRoad = null;
 	
 	private static GUIText textClassicSonic = null;
 	private static GUIText textDollSonic = null;
@@ -85,17 +86,7 @@ public class PauseScreen
 	
 	public static void step()
 	{
-		boolean startInput = false;
-		if (Joystick.joystickExists() && Joystick.getIsButtonPressed(Joystick.BUTTON_START))
-		{
-			startInput = true;
-		}
-		if (Keyboard.isKeyDown(Keyboard.KEY_RETURN))
-		{
-			startInput = true;
-		}
-		
-		if (startInput && !startInputPrevious)
+		if (Input.startInput && !Input.previousStartInput)
 		{
 			if(MainGameLoop.gameState == MainGameLoop.gameStates.paused)
 			{
@@ -202,7 +193,7 @@ public class PauseScreen
 								
 							case 2:
 								menuDisplayID = LEVEL_SELECT;
-								menuSelectionMAX = 10;
+								menuSelectionMAX = 11;
 								menuSelection = 0;
 								textResume.setVisibility(false);
 								textRestart.setVisibility(false);
@@ -221,6 +212,7 @@ public class PauseScreen
 								textWeaponsBed.setVisibility(true);
 								textMetalHarbor.setVisibility(true);
 								textBOB.setVisibility(true);
+								textRainbowRoad.setVisibility(true);
 								
 								textClassicSonic.setVisibility(false);
 								textDollSonic.setVisibility(false);
@@ -249,6 +241,7 @@ public class PauseScreen
 								textWeaponsBed.setVisibility(false);
 								textMetalHarbor.setVisibility(false);
 								textBOB.setVisibility(false);
+								textRainbowRoad.setVisibility(false);
 								
 								textClassicSonic.setVisibility(true);
 								textDollSonic.setVisibility(true);
@@ -323,6 +316,11 @@ public class PauseScreen
 								unpause();
 								break;
 								
+							case 11:
+								LevelLoader.loadLevel("RainbowRoad.lvl", true);
+								unpause();
+								break;
+								
 						}
 						break;
 						
@@ -389,6 +387,7 @@ public class PauseScreen
 					textWeaponsBed.setVisibility(false);
 					textMetalHarbor.setVisibility(false);
 					textBOB.setVisibility(false);
+					textRainbowRoad.setVisibility(false);
 					
 					textClassicSonic.setVisibility(false);
 					textDollSonic.setVisibility(false);
@@ -417,7 +416,7 @@ public class PauseScreen
 					break;
 					
 				case LEVEL_SELECT:
-					float spacing = 1/11.0f;
+					float spacing = 1/12.0f;
 					switch (menuSelection)
 					{
 						case 0: textCursor.getPosition().y = 0.0f; break;
@@ -441,6 +440,8 @@ public class PauseScreen
 						case 9: textCursor.getPosition().y = spacing*9; break;
 						
 						case 10: textCursor.getPosition().y = spacing*10; break;
+						
+						case 11: textCursor.getPosition().y = spacing*11; break;
 					}
 					break;
 					
@@ -466,8 +467,6 @@ public class PauseScreen
 			selectInputPrevious = selectInput;
 			backInputPrevious = backInput;
 		}
-	    
-		startInputPrevious = startInput;
 	}
 	
 	private static void unpause()
@@ -511,6 +510,7 @@ public class PauseScreen
 			textCharSelect.delete();
 			textCharSelect = null;
 		}
+		
 		if (textEmeraldCoast != null)
 		{
 			textEmeraldCoast.delete();
@@ -566,6 +566,12 @@ public class PauseScreen
 			textBOB.delete();
 			textBOB = null;
 		}
+		if (textRainbowRoad != null)
+		{
+			textRainbowRoad.delete();
+			textRainbowRoad = null;
+		}
+		
 		if (textClassicSonic != null)
 		{
 			textClassicSonic.delete();
@@ -609,7 +615,7 @@ public class PauseScreen
 		textCharSelect = new GUIText("Character Select", 3, font, new Vector2f(0.5f, 0.6f), 1f, false, true);
 		textQuit = new GUIText("Quit Game", 3, font, new Vector2f(0.5f, 0.7f), 1f, false, true);
 		
-		float spacing = 1/11.0f;
+		float spacing = 1/12.0f;
 		
 		textEmeraldCoast = new GUIText("Emerald Coast", 3, font, new Vector2f(0.5f, 0.0f), 1f, false, false);
 		textSpeedHighway = new GUIText("Speed Highway", 3, font, new Vector2f(0.5f, spacing), 1f, false, false);
@@ -622,6 +628,7 @@ public class PauseScreen
 		textWeaponsBed = new GUIText("Weapons Bed", 3, font, new Vector2f(0.5f, spacing*8), 1f, false, false);
 		textMetalHarbor = new GUIText("Metal Harbor", 3, font, new Vector2f(0.5f, spacing*9), 1f, false, false);
 		textBOB = new GUIText("Bob-omb Btlfld", 3, font, new Vector2f(0.5f, spacing*10), 1f, false, false);
+		textRainbowRoad = new GUIText("Rainbow Road", 3, font, new Vector2f(0.5f, spacing*11), 1f, false, false);
 		
 		textClassicSonic = new GUIText("Classic Sonic", 3, font, new Vector2f(0.5f, 0.3f), 1f, false, false);
 		textDollSonic = new GUIText("Sonic Doll", 3, font, new Vector2f(0.5f, 0.4f), 1f, false, false);

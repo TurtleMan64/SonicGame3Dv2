@@ -92,6 +92,7 @@ public class Joystick
 				//System.out.println("	button "+i+" pressed");
 			}
 		}
+		
 		//for(int i = 0; i < count; i++)
 		{
 			//if (buttonsPressed[i])
@@ -111,9 +112,11 @@ public class Joystick
 		//System.out.println();
 		
 		approxXLeftPrevious = approxXLeft;
-		approxXLeft = Math.round(joystick.getXAxisValue());
+		approxXLeft = Math.round(getXLeft());
 		approxYLeftPrevious = approxYLeft;
-		approxYLeft = Math.round(joystick.getYAxisValue());
+		approxYLeft = Math.round(getYLeft());
+		
+		//System.out.println("");
 		//System.out.println();
 	}
 	

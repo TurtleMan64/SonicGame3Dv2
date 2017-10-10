@@ -206,6 +206,12 @@ public class LevelLoader
         	
         	while (input.hasNextLine())
             {
+        		//Poll the controller to not miss events (Buttons get stuck)
+        		if (Joystick.joystickExists())
+    			{
+    				Joystick.poll();
+    			}
+        		
         		processLine(input.nextInt(), input, MainGameLoop.gameEntities);
             }
             

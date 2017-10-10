@@ -6,6 +6,7 @@ import particles.ParticleResources;
 import renderEngine.DisplayManager;
 import toolbox.AudioRes;
 import toolbox.ConvenientMethods;
+import toolbox.Input;
 import toolbox.Joystick;
 import toolbox.Maths;
 import toolbox.ParticleManager;
@@ -936,6 +937,7 @@ public class Ball extends Entity
 		//to prevent auto homing attack off a spring
 		//if (newMove == true)
 		{
+			/*
 			previousJumpInput = true;
 			jumpInput = true;
 			previousActionInput = true;
@@ -948,6 +950,7 @@ public class Ball extends Entity
 			previousSpecialInput = true;
 			previousAction2Input = true;
 			action2Input = true;
+			*/
 		}
 	}
 	
@@ -1829,133 +1832,26 @@ public class Ball extends Entity
 	
 	private void setMovementInputs()
 	{
-		previousJumpInput = jumpInput;
-		previousActionInput = actionInput;
-		previousAction2Input = action2Input;
-		previousShoulderInput = shoulderInput;
-		previousSelectInput = selectInput;
-		previousSpecialInput = specialInput;
+		jumpInput = Input.jumpInput;
+		actionInput = Input.actionInput;
+		action2Input = Input.action2Input;
+		shoulderInput = Input.shoulderInput;
+		selectInput = Input.selectInput;
+		specialInput = Input.specialInput;
 		
-		jumpInput = false;
-		if (Keyboard.isKeyDown(Keyboard.KEY_SPACE) || (Joystick.joystickExists() && Joystick.getIsButtonPressed(Joystick.BUTTON_A)))
-		{
-			jumpInput = true;
-		}
+		previousJumpInput = Input.previousJumpInput;
+		previousActionInput = Input.previousActionInput;
+		previousAction2Input = Input.previousAction2Input;
+		previousShoulderInput = Input.previousShoulderInput;
+		previousSelectInput = Input.previousSelectInput;
+		previousSpecialInput = Input.previousSpecialInput;
 		
-		actionInput = false;
-		if (Keyboard.isKeyDown(Keyboard.KEY_C) || (Joystick.joystickExists() && Joystick.getIsButtonPressed(Joystick.BUTTON_B)))
-		{
-			actionInput = true;
-		}
+		movementInputX = Input.movementInputX;
+		movementInputY = Input.movementInputY;
+		cameraInputX = Input.cameraInputX;
+		cameraInputY = Input.cameraInputY;
 		
-		action2Input = false;
-		if (Keyboard.isKeyDown(Keyboard.KEY_F) || (Joystick.joystickExists() && Joystick.getIsButtonPressed(Joystick.BUTTON_X)))
-		{
-			action2Input = true;
-		}
-		
-		shoulderInput = false;
-		if (Keyboard.isKeyDown(Keyboard.KEY_COMMA) || (Joystick.joystickExists() && Joystick.getIsButtonPressed(Joystick.BUTTON_LB)))
-		//if ((Keyboard.isKeyDown(Keyboard.KEY_COMMA))
-		{
-			shoulderInput = true;
-			if (firstPerson)
-			{
-				//firstPerson = false;
-			}
-			else
-			{
-				//firstPerson = true;
-			}
-		}
-		
-		selectInput = false;
-		if (Keyboard.isKeyDown(Keyboard.KEY_TAB)) //|| (Joystick.joystickExists() && Joystick.getIsButtonPressed(Joystick.BUTTON_SELECT)))
-		{
-			selectInput = true;
-		}
-		
-		specialInput = false;
-		if (Keyboard.isKeyDown(Keyboard.KEY_X) || (Joystick.joystickExists() && Joystick.getIsButtonPressed(Joystick.BUTTON_Y)))
-		{
-			specialInput = true;
-		}
-		
-		movementInputX = 0;
-		movementInputY = 0;
-		if(Keyboard.isKeyDown(Keyboard.KEY_W))
-		{
-			movementInputY = -1;
-		}
-		else
-		{
-			if(Keyboard.isKeyDown(Keyboard.KEY_S))
-			{
-				movementInputY = 1;
-			}
-			else
-			{
-				movementInputY = 0;
-			}
-		}
-		if(Keyboard.isKeyDown(Keyboard.KEY_A))
-		{
-			movementInputX = -1;
-		}
-		else
-		{
-			if(Keyboard.isKeyDown(Keyboard.KEY_D))
-			{
-				movementInputX = 1;
-			}
-			else
-			{
-				movementInputX = 0;
-			}
-		}
-		
-		if(Math.abs(movementInputX*movementInputY) == 1)
-		{
-			movementInputX = (float)(movementInputX*0.70710678118);
-			movementInputY = (float)(movementInputY*0.70710678118);
-		}
-		
-		if((Joystick.joystickExists() && Joystick.getXLeft() != 0) || (Joystick.joystickExists() && Joystick.getYLeft() != 0))
-		{
-			movementInputX = Joystick.getXLeft();
-			movementInputY = Joystick.getYLeft();
-		}
-		
-		cameraInputY = 0;
-		cameraInputX = 0;
-		if(MainGameLoop.freeMouse == false)
-		{
-			cameraInputY += -0.25f*(Mouse.getY()-mousePreviousY);
-			cameraInputX += 0.25f*(Mouse.getX()-mousePreviousX);
-			Mouse.setCursorPosition(DisplayManager.getWidth()/2, DisplayManager.getHeight()/2);
-			mousePreviousX = Mouse.getX();
-			mousePreviousY = Mouse.getY();
-		}
-		
-		if((Joystick.joystickExists() && Joystick.getXRight() != 0) || (Joystick.joystickExists() && Joystick.getYRight() != 0))
-		{
-			cameraInputY += 2.5f*(Joystick.getYRight());
-			cameraInputX += 2.5f*(Joystick.getXRight());
-		}
-		
-		if(Joystick.joystickExists())
-		{
-			cameraInputX += 2*(Joystick.getLTrigger()-Joystick.getRTrigger());
-		}
-		
-		if(Mouse.hasWheel())
-		{
-			zoomInput = Mouse.getDWheel()/10;
-		}
-		if(Joystick.joystickExists())
-		{
-			zoomInput+=Joystick.getDPadY();
-		}
+		zoomInput = Input.zoomInput;
 		
 		float inputMag = (float)Math.sqrt(movementInputX*movementInputX + movementInputY*movementInputY);
 		moveSpeedCurrent = moveAcceleration*inputMag;
@@ -1971,6 +1867,12 @@ public class Ball extends Entity
 			shoulderInput = false;
 			selectInput = false;
 			specialInput = false;
+			previousJumpInput = false;
+			previousActionInput = false;
+			previousAction2Input = false;
+			previousShoulderInput = false;
+			previousSelectInput = false;
+			previousSpecialInput = false;
 			movementInputX = 0;
 			movementInputY = 0;
 			//cameraInputY = 0;

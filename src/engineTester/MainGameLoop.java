@@ -70,6 +70,7 @@ import textures.ModelTexture;
 //import toolbox.AudioRes;
 import toolbox.CoinManager;
 import toolbox.ConvenientMethods;
+import toolbox.Input;
 import toolbox.Joystick;
 import toolbox.LevelLoader;
 import toolbox.ParticleManager;
@@ -424,10 +425,12 @@ public class MainGameLoop
 	        //AL10.alListener(AL10.AL_POSITION, listenerPos);
 	        
 	        
-			if(Joystick.joystickExists())
+			if (Joystick.joystickExists())
 			{
 				Joystick.poll();
 			}
+			
+			Input.refresh();
 			
 			if (bufferTime >= 0)
 			{
