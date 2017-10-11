@@ -863,6 +863,8 @@ public class Ball extends Entity
 		
 		inWaterPrevious = inWater;
 		inWater = false;
+		
+		//System.out.println("float stickAngle = "+(-cam.getYaw()-movementAngle));
 	}
 
 	public float getxVel()
@@ -1020,16 +1022,20 @@ public class Ball extends Entity
 		float homingPower = 5.5f;
 		float angle = -cam.getYaw()-movementAngle;
 		
-		if (moveSpeedCurrent < 0.05)
-		{
-			angle = getRotY();
-		}
-		
 		if (characterID == 2)
 		{
-			//find nearest ring
+			boolean targetNearest = false;
+			float closestMatchingAngle = 360;
+			float stickAngle = -cam.getYaw()-movementAngle;
+			
+			if (moveSpeedCurrent < 0.05)
+			{
+				angle = getRotY();
+				targetNearest = true;
+			}
+			
 			Entity closest = null;
-			float dist = 12000; //distance squared
+			float dist = 12000; //Homing attack range. Distance squared
 			float myX = getX();
 			float myZ = getZ();
 			float myY = getY();
@@ -1044,11 +1050,34 @@ public class Ball extends Entity
 					float xDiff = e.getX()-myX;
 					float zDiff = e.getZ()-myZ;
 					float yDiff = myY-e.getY();
-					float newDist = xDiff*xDiff+zDiff*zDiff+yDiff*yDiff;
-					if (yDiff > -6 && newDist < dist)
+					float thisDist = xDiff*xDiff+zDiff*zDiff+yDiff*yDiff;
+					
+					if (targetNearest)
 					{
-						dist = newDist;
-						closest = e;
+						if (yDiff > -6 && thisDist < dist)
+						{
+							dist = thisDist;
+							closest = e;
+						}
+					}
+					else
+					{
+						if (thisDist < dist)
+						{
+							//calculate angle to this target
+							float toTargetAngle = (float)Math.toDegrees(Math.atan2(zDiff, -xDiff))+180;
+							//calculate difference in angles
+							float angleDiff = Math.abs(compareTwoAngles(stickAngle, toTargetAngle));
+							
+							if (angleDiff < 60)
+							{
+								if (yDiff > -6 && angleDiff < closestMatchingAngle)
+								{
+									closestMatchingAngle = angleDiff;
+									closest = e;
+								}
+							}
+						}
 					}
 				}
 			}

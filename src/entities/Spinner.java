@@ -71,6 +71,14 @@ public class Spinner extends Entity
 				float xDiff = (getX()-MainGameLoop.gamePlayer.getX());
 				float zDiff = (getZ()-MainGameLoop.gamePlayer.getZ());
 				setRotY((float)Math.toDegrees(Math.atan2(zDiff, -xDiff)));
+				
+				
+				//float playerXDiff = 
+				//float toTargetAngle = (float)Math.toDegrees(Math.atan2(zDiff, -xDiff))+180;
+				//System.out.println("toTargetAngle = "+toTargetAngle);
+				//System.out.println();
+				//calculate difference in angles
+				//float angleDiff = Math.abs(compareTwoAngles(stickAngle, toTargetAngle));
 			}
 		}
 		

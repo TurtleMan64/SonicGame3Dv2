@@ -569,7 +569,7 @@ public class MainGameLoop
 			gameEntities.addAll(gameEntities.size(), gameEntitiesToAdd);
 			gameEntitiesToAdd.clear();
 			Iterator<Entity> del = gameEntitiesToDelete.iterator();
-			while(del.hasNext())
+			while (del.hasNext())
 			{
 				gameEntities.remove(del.next());
 			}
