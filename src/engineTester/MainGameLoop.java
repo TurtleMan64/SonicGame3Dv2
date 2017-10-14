@@ -674,26 +674,20 @@ public class MainGameLoop
 				}
 			}
 			
-			//good
 			
 			
 			//reflection render
 			fbos.bindReflectionFrameBuffer();
 			float distance = 2*(camera.getPosition().y-waters.get(0).getHeight());
-			//good
 			if (aboveWater)
 			{
 				camera.getPosition().y -= distance;
 				camera.invertPitch();
-				//good
 				renderer.render(gameLights, camera, new Vector4f(0, 1, 0, -waters.get(0).getHeight()+0.3f)); //0.3f normal, 3f to work better for vertical walls
-				//bad
 				renderer.renderTransparent(gameLights, camera, new Vector4f(0, 1, 0, -waters.get(0).getHeight()+0.3f));
-				//bad
 				ParticleMaster.renderParticles(camera, SkyManager.getOverallBrightness(), 1);
 				camera.getPosition().y += distance;
 				camera.invertPitch();
-				//bad
 			}
 			else
 			{
@@ -707,8 +701,6 @@ public class MainGameLoop
 			}
 			
 			fbos.unbindCurrentFrameBuffer();
-			
-			//bad
 			
 			//refraction render
 			Iterator<Entity> g2 = gameEntities.iterator();
@@ -748,8 +740,6 @@ public class MainGameLoop
 			
 			fbos.unbindCurrentFrameBuffer();
 			GL11.glDisable(GL30.GL_CLIP_DISTANCE0);
-			
-			//bad
 			
 			//binding post processing fbo
 			multisampleFbo.bindFrameBuffer();
@@ -798,8 +788,7 @@ public class MainGameLoop
 			ParticleMaster.renderParticles(camera, SkyManager.getOverallBrightness(), 0);
 			//GL11.glDepthMask(true);
 			
-			
-			//bad
+
 			
 			multisampleFbo.unbindFrameBuffer();
 			multisampleFbo.resolveToFbo(GL30.GL_COLOR_ATTACHMENT0, outputFbo);
