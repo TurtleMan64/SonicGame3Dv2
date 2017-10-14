@@ -24,6 +24,7 @@ import entities.Entity;
 import entities.GoalSign;
 import entities.GoalTrigger;
 import entities.ItemCapsule;
+import entities.ManiaSonicModels;
 import entities.Motobug;
 import entities.NPC;
 import entities.Palmtree;
@@ -560,6 +561,7 @@ public class LevelLoader
 		KoopaBeachWaterfall.freeStaticModels();
 		NPC.freeStaticModels();
 		BOBWoodPlank.freeStaticModels();
+		ManiaSonicModels.freeStaticModels();
 	}
 	
 	private static float nextFloat(Scanner input)

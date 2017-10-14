@@ -39,7 +39,7 @@ public class Ball extends Entity
 	//private static TexturedModel[] modelBallYellow = ConvenientMethods.loadModel("Models/Sky/", "SphereYellow");
 	//private static TexturedModel[] modelLimb = ConvenientMethods.loadModel("Models/Limb/", "Limb");
 	
-	public static int characterID = 0;
+	public static int characterID = 4;
 	
 	
 	private static TexturedModel[] modelBody             = null; //ConvenientMethods.loadModel("Models/Sonic/", "Body");
@@ -161,6 +161,8 @@ public class Ball extends Entity
 	private Limb myRightThigh;
 	private Limb myRightShin;
 	private Limb myRightFoot;
+	
+	private ManiaSonicModels maniaSonic;
 	
 	//private Entity myBall;
 	
@@ -351,7 +353,7 @@ public class Ball extends Entity
 		//myBall = new Entity(modelBall, new Vector3f(0,0,0));
 		//MainGameLoop.gameEntitiesToAdd.add(myBall);
 		createLimbs();
-		respawn();
+		//respawn();
 	}
 	
 	@Override
@@ -1700,13 +1702,21 @@ public class Ball extends Entity
 		
 		if (mySpeed > 0.01)
 		{
-			myBody.setBaseOrientation(displayPos, yrot, zrot);
+			if (myBody != null) myBody.setBaseOrientation(displayPos, yrot, zrot);
+			if (maniaSonic != null)
+			{
+				maniaSonic.setOrientation(displayPos, yrot, zrot);
+			}
 			setRotY(yrot);
 			setRotZ(zrot);
 		}
 		else
 		{
-			myBody.setBaseOrientation(displayPos, getRotY(), getRotZ());
+			if (myBody != null) myBody.setBaseOrientation(displayPos, getRotY(), getRotZ());
+			if (maniaSonic != null)
+			{
+				maniaSonic.setOrientation(displayPos, getRotY(), getRotZ());
+			}
 		}
 		
 		float modelIncreaseVal = (mySpeed)*0.3f;
@@ -1738,7 +1748,7 @@ public class Ball extends Entity
 		{
 			float h = (float)Math.sqrt(xVelAir*xVelAir+zVelAir*zVelAir);
 			float zr = (float)(Math.toDegrees(Math.atan2(yVel, h)));
-			myBody.setBaseOrientation(displayPos, getRotY(), zr+90);
+			if (myBody != null) myBody.setBaseOrientation(displayPos, getRotY(), zr+90);
 			
 			float height = 2;
 			Vector3f offset = new Vector3f(currNorm.x*height, currNorm.y*height, currNorm.z*height);
@@ -1751,7 +1761,7 @@ public class Ball extends Entity
 		}
 		else if (isBouncing)
 		{
-			myBody.setBaseOrientation(displayPos, getRotY(), getRotZ()-count*60);
+			if (myBody != null) myBody.setBaseOrientation(displayPos, getRotY(), getRotZ()-count*60);
 			float height = 2;
 			Vector3f offset = new Vector3f(currNorm.x*height, currNorm.y*height, currNorm.z*height);
 			Vector3f prevPos = new Vector3f(previousDisplayPos);
@@ -1763,7 +1773,12 @@ public class Ball extends Entity
 		}
 		else if (isJumping)
 		{
-			myBody.setBaseOrientation(displayPos, getRotY(), getRotZ()-count*35);
+			if (myBody != null) myBody.setBaseOrientation(displayPos, getRotY(), getRotZ()-count*35);
+			if (maniaSonic != null)
+			{
+				maniaSonic.setOrientation(displayPos, getRotY(), getRotZ()-count*35);
+				maniaSonic.animate(12, 0);
+			}
 			//float height = 2;
 			//Vector3f pos = new Vector3f(getX()+currNorm.x*height, getY()+currNorm.y*height, getZ()+currNorm.z*height);
 			//MainGameLoop.gameEntitiesToAdd.add(new SpindashTrail(pos, 20));
@@ -1771,7 +1786,12 @@ public class Ball extends Entity
 		}
 		else if (isBall)
 		{
-			myBody.setBaseOrientation(displayPos, getRotY(), getRotZ()-count*70);
+			if (myBody != null) myBody.setBaseOrientation(displayPos, getRotY(), getRotZ()-count*70);
+			if (maniaSonic != null)
+			{
+				maniaSonic.setOrientation(displayPos, getRotY(), getRotZ()-count*70);
+				maniaSonic.animate(12, 0);
+			}
 			float height = 2;
 			Vector3f offset = new Vector3f(currNorm.x*height, currNorm.y*height, currNorm.z*height);
 			Vector3f prevPos = new Vector3f(previousDisplayPos);
@@ -1789,15 +1809,25 @@ public class Ball extends Entity
 			{
 				zrotoff = -(count*50);//30
 			}
-			myBody.setBaseOrientation(displayPos, getRotY(), getRotZ()+zrotoff);
+			if (myBody != null) myBody.setBaseOrientation(displayPos, getRotY(), getRotZ()+zrotoff);
 	    	updateLimbs(12, 0);
+	    	if (maniaSonic != null)
+			{
+				maniaSonic.setOrientation(displayPos, getRotY(), getRotZ()+zrotoff);
+				maniaSonic.animate(12, 0);
+			}
 		}
 		else if(spindashReleaseTimer > 0)
 		{
 			float zrotoff = (spindashReleaseTimer*spindashReleaseTimer*0.8f); //0.5
 			//zrotoff = -count*40; //different look, might look better?
-			myBody.setBaseOrientation(displayPos, getRotY(), getRotZ()+zrotoff);
+			if (myBody != null) myBody.setBaseOrientation(displayPos, getRotY(), getRotZ()+zrotoff);
 	    	updateLimbs(12, 0);
+	    	if (maniaSonic != null)
+			{
+				maniaSonic.setOrientation(displayPos, getRotY(), getRotZ()+zrotoff);
+				maniaSonic.animate(12, 0);
+			}
 		}
 		else if(onPlane && mySpeed < 0.01)
 		{
@@ -1806,19 +1836,24 @@ public class Ball extends Entity
 		}
 		else if(isSkidding)
 		{
-			myBody.setBaseOrientation(displayPos, getRotY(), getRotZ());
+			if (myBody != null) myBody.setBaseOrientation(displayPos, getRotY(), getRotZ());
 	    	updateLimbs(8, 0);
 		}
 		else if (hitTimer > 0)
 		{
-			myBody.setBaseOrientation(displayPos, getRotY(), getRotZ());
+			if (myBody != null) myBody.setBaseOrientation(displayPos, getRotY(), getRotZ());
 			updateLimbs(11, 0);
 		}
 		else
 		{
-			myBody.setBaseOrientation(displayPos, getRotY(), getRotZ());
+			if (myBody != null) myBody.setBaseOrientation(displayPos, getRotY(), getRotZ());
 	    	float time = 10 * modelRunIndex * 0.5f;
 	    	updateLimbs(1, time);
+	    	if (maniaSonic != null)
+			{
+				maniaSonic.setOrientation(displayPos, getRotY(), getRotZ());
+				maniaSonic.animate(1, time);
+			}
 		}
 		
 		if (firstPerson) //dont do this every frame if you dont have to 
@@ -1834,6 +1869,10 @@ public class Ball extends Entity
 			else if (iFrame % 4 == 0)
 			{
 				setLimbsVisibility(true);
+				if (maniaSonic != null)
+				{
+					maniaSonic.setVisibility(true);
+				}
 			}
 			
 			//if ((isJumping || isBall) && MainGameLoop.gameClock % 51 == 13)
@@ -1992,6 +2031,7 @@ public class Ball extends Entity
 	
 	public void updateLimbs(int animIndex, float time)
 	{
+		if (myBody == null) return;
 		myBody.animationIndex = animIndex;
     	myHead.animationIndex = animIndex;
     	myLeftHumerus.animationIndex = animIndex;
@@ -2024,6 +2064,7 @@ public class Ball extends Entity
 	
 	public void setLimbsVisibility(boolean visible)
 	{
+		if (myBody == null) return;
 		myBody.setVisibility(visible);
 		myHead.setVisibility(visible);
 		myLeftHumerus.setVisibility(visible);
@@ -2042,6 +2083,7 @@ public class Ball extends Entity
 	
 	public void setLimbsScale(float newScale)
 	{
+		if (myBody == null) return;
 		myBody.setScale(newScale);
 		myHead.setScale(newScale);
 		myLeftHumerus.setScale(newScale);
@@ -2173,6 +2215,11 @@ public class Ball extends Entity
 			myRightShin =   new Limb(modelRightShin,    1.1f, 0, 0, null, myRightThigh);
 			myRightFoot =   new Limb(modelRightFoot,    1.1f, 0, 0, null, myRightShin);
 		}
+		else if (characterID == 4) //Mania Sonic
+		{
+			maniaSonic = new ManiaSonicModels();
+			MainGameLoop.gameEntitiesToAdd.add(maniaSonic);
+		}
 		
 		//myBall = new Entity(modelBall, new Vector3f(0,0,0));
 		
@@ -2251,39 +2298,42 @@ public class Ball extends Entity
 		Limb playerRightFoot = new Limb(ConvenientMethods.loadModel("Models/Bomberman/", "Foot", loader), 3f, 0, 0, null, playerRightShin);
 		*/
 		
-		
-		AnimationResources.assignAnimationsHuman(myBody, myHead, 
-				myLeftHumerus, myLeftForearm, myLeftHand, 
-				myRightHumerus, myRightForearm, myRightHand, 
-				myLeftThigh, myLeftShin, myLeftFoot, 
-				myRightThigh, myRightShin, myRightFoot);
+		if (characterID != 4)
+		{
+			AnimationResources.assignAnimationsHuman(myBody, myHead, 
+					myLeftHumerus, myLeftForearm, myLeftHand, 
+					myRightHumerus, myRightForearm, myRightHand, 
+					myLeftThigh, myLeftShin, myLeftFoot, 
+					myRightThigh, myRightShin, myRightFoot);
+			addLimbsToGame();
+		}
 	}
 	
 	
-	public void respawn()
-	{
-		super.respawn();
-		addLimbsToGame();
-		xVel = 0.0f;
-		yVel = 0.0f;
-		zVel = 0.0f;
-		xVelAir = 0.0f;
-		zVelAir = 0.0f;
-		relativeXVel = 0;
-		relativeZVel = 0;
-		movementInputX = 0;
-		movementInputY = 0;
-		movementAngle = 0;
-		moveSpeedCurrent = 0;
-		moveSpeedAirCurrent = 0.0f;
-		triCol = null;
-	}
+	//public void respawn()
+	//{
+		//super.respawn();
+		//addLimbsToGame();
+		//xVel = 0.0f;
+		//yVel = 0.0f;
+		//zVel = 0.0f;
+		//xVelAir = 0.0f;
+		//zVelAir = 0.0f;
+		//relativeXVel = 0;
+		//relativeZVel = 0;
+		//movementInputX = 0;
+		//movementInputY = 0;
+		//movementAngle = 0;
+		//moveSpeedCurrent = 0;
+		//moveSpeedAirCurrent = 0.0f;
+		//triCol = null;
+	//}
 	
-	public void despawn()
-	{
-		super.despawn();
-		removeLimbsFromGame();
-	}
+	//public void despawn()
+	//{
+		//super.despawn();
+		//removeLimbsFromGame();
+	//}
 	
 	public float getHitboxHorizontal()
 	{
@@ -2578,6 +2628,11 @@ public class Ball extends Entity
 			if (modelRightShin == null) { modelRightShin = ConvenientMethods.loadModel("Models/Dage4Aquatic/", "Shin"); }
 			if (modelRightFoot == null) { modelRightFoot = ConvenientMethods.loadModel("Models/Dage4Aquatic/", "Foot"); }
 		}
+		if (characterID == 4) //Mania Sonic
+		{
+			ManiaSonicModels.allocateStaticModels();
+		}
+		
 	}
 	
 	public static void freeStaticModels()
