@@ -284,7 +284,7 @@ public class PauseScreen
 						switch (menuSelection)
 						{
 							case 0:
-								LevelLoader.loadLevel("EmeraldCoast.lvl", true);
+								LevelLoader.loadLevel("Snowhead.lvl", true);
 								unpause();
 								break;
 								

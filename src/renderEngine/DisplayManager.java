@@ -141,7 +141,7 @@ public class DisplayManager
 			Display.create(new PixelFormat().withDepthBits(24));
 			//Display.create(new PixelFormat(), attribs);
 			//Display.create();
-			Display.setTitle("version 0.0009");
+			Display.setTitle("version 0.0010");
 			System.out.println("Using OpenGL version "+GL11.glGetString(GL11.GL_VERSION));
 			GL11.glEnable(GL13.GL_MULTISAMPLE);
 			//Display.setLocation(2100, 64);
