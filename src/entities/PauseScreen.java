@@ -77,6 +77,7 @@ public class PauseScreen
 	private static GUIText textDollSonic = null;
 	private static GUIText textMechaSonic = null;
 	private static GUIText textDage4Aquatic = null;
+	private static GUIText textManiaSonic = null;
 	
 	private static boolean shouldPause = false;
 	
@@ -157,6 +158,7 @@ public class PauseScreen
 					textDollSonic.setColour(0.6f, 0.6f, 0.6f);
 					textMechaSonic.setColour(0.6f, 0.6f, 0.6f);
 					textDage4Aquatic.setColour(0.6f, 0.6f, 0.6f);
+					textManiaSonic.setColour(0.6f, 0.6f, 0.6f);
 					break;
 					
 				case 1:
@@ -164,6 +166,7 @@ public class PauseScreen
 					textDollSonic.setColour(1f, 1f, 1f);
 					textMechaSonic.setColour(0.6f, 0.6f, 0.6f);
 					textDage4Aquatic.setColour(0.6f, 0.6f, 0.6f);
+					textManiaSonic.setColour(0.6f, 0.6f, 0.6f);
 					break;
 					
 				case 2:
@@ -171,6 +174,7 @@ public class PauseScreen
 					textDollSonic.setColour(0.6f, 0.6f, 0.6f);
 					textMechaSonic.setColour(1f, 1f, 1f);
 					textDage4Aquatic.setColour(0.6f, 0.6f, 0.6f);
+					textManiaSonic.setColour(0.6f, 0.6f, 0.6f);
 					break;
 					
 				case 3:
@@ -178,6 +182,15 @@ public class PauseScreen
 					textDollSonic.setColour(0.6f, 0.6f, 0.6f);
 					textMechaSonic.setColour(0.6f, 0.6f, 0.6f);
 					textDage4Aquatic.setColour(1f, 1f, 1f);
+					textManiaSonic.setColour(0.6f, 0.6f, 0.6f);
+					break;
+					
+				case 4:
+					textClassicSonic.setColour(0.6f, 0.6f, 0.6f);
+					textDollSonic.setColour(0.6f, 0.6f, 0.6f);
+					textMechaSonic.setColour(0.6f, 0.6f, 0.6f);
+					textDage4Aquatic.setColour(0.6f, 0.6f, 0.6f);
+					textManiaSonic.setColour(1f, 1f, 1f);
 					break;
 			}
 			
@@ -225,11 +238,12 @@ public class PauseScreen
 								textDollSonic.setVisibility(false);
 								textMechaSonic.setVisibility(false);
 								textDage4Aquatic.setVisibility(false);
+								textManiaSonic.setVisibility(false);
 								break;
 								
 							case 3:
 								menuDisplayID = CHAR_SELECT;
-								menuSelectionMAX = 3;
+								menuSelectionMAX = 4;
 								menuSelection = 0;
 								textResume.setVisibility(false);
 								textRestart.setVisibility(false);
@@ -254,6 +268,7 @@ public class PauseScreen
 								textDollSonic.setVisibility(true);
 								textMechaSonic.setVisibility(true);
 								textDage4Aquatic.setVisibility(true);
+								textManiaSonic.setVisibility(true);
 								break;
 								
 							case 4:
@@ -358,6 +373,13 @@ public class PauseScreen
 									Ball.characterID = 3;
 								}
 								break;
+								
+							case 4:
+								if (MainGameLoop.unlockedManiaSonic)
+								{
+									Ball.characterID = 4;
+								}
+								break;
 						}
 						break;
 				
@@ -401,6 +423,7 @@ public class PauseScreen
 					textDollSonic.setVisibility(false);
 					textMechaSonic.setVisibility(false);
 					textDage4Aquatic.setVisibility(false);
+					textManiaSonic.setVisibility(false);
 				}
 			}
 			
@@ -463,6 +486,8 @@ public class PauseScreen
 						case 2: textCursor.getPosition().y = 0.5f; break;
 						
 						case 3: textCursor.getPosition().y = 0.6f; break;
+						
+						case 4: textCursor.getPosition().y = 0.7f; break;
 						
 					}
 					break;
@@ -600,6 +625,11 @@ public class PauseScreen
 			textDage4Aquatic.delete();
 			textDage4Aquatic = null;
 		}
+		if (textManiaSonic != null)
+		{
+			textManiaSonic.delete();
+			textManiaSonic = null;
+		}
 	}
 	
 	public static void pause()
@@ -642,5 +672,6 @@ public class PauseScreen
 		textDollSonic = new GUIText("Sonic Doll", 3, font, new Vector2f(0.5f, 0.4f), 1f, false, false);
 		textMechaSonic = new GUIText("Mecha Sonic", 3, font, new Vector2f(0.5f, 0.5f), 1f, false, false);
 		textDage4Aquatic = new GUIText("Dage4 Aquatic", 3, font, new Vector2f(0.5f, 0.6f), 1f, false, false);
+		textManiaSonic = new GUIText("Mania Sonic", 3, font, new Vector2f(0.5f, 0.7f), 1f, false, false);
 	}
 }

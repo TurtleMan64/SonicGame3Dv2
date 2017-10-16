@@ -1023,6 +1023,10 @@ public class Ball extends Entity
 		
 		float homingPower = 5.5f;
 		float angle = -cam.getYaw()-movementAngle;
+		if (moveSpeedCurrent < 0.05)
+		{
+			angle = getRotY();
+		}
 		
 		if (characterID == 2)
 		{
@@ -1716,6 +1720,32 @@ public class Ball extends Entity
 		
 		float mySpeed = (float)Math.sqrt(xrel*xrel+zrel*zrel);
 		
+		
+		setLimbsVisibility(true);
+		if (maniaSonic != null) { maniaSonic.setVisibility(true); }
+		
+		if (firstPerson)
+		{
+			setLimbsVisibility(false);
+			if (maniaSonic != null) { maniaSonic.setVisibility(false); }
+		}
+		else
+		{
+			if (iFrame % 4 == 2 || iFrame % 4 == 3)
+			{
+				setLimbsVisibility(false);
+				if (maniaSonic != null) { maniaSonic.setVisibility(false); }
+			}
+			else if (iFrame % 4 == 0)
+			{
+				//setLimbsVisibility(true);
+				//if (maniaSonic != null)
+				{
+					//maniaSonic.setVisibility(true);
+				}
+			}
+		}
+		
 		if (mySpeed > 0.01)
 		{
 			if (myBody != null) myBody.setBaseOrientation(displayPos, yrot, zrot);
@@ -1765,6 +1795,7 @@ public class Ball extends Entity
 			float h = (float)Math.sqrt(xVelAir*xVelAir+zVelAir*zVelAir);
 			float zr = (float)(Math.toDegrees(Math.atan2(yVel, h)));
 			if (myBody != null) myBody.setBaseOrientation(displayPos, getRotY(), zr+90);
+			if (maniaSonic != null) { maniaSonic.setVisibility(false); }
 			
 			float height = 2;
 			Vector3f offset = new Vector3f(currNorm.x*height, currNorm.y*height, currNorm.z*height);
@@ -1778,6 +1809,12 @@ public class Ball extends Entity
 		else if (isBouncing)
 		{
 			if (myBody != null) myBody.setBaseOrientation(displayPos, getRotY(), getRotZ()-count*60);
+			if (maniaSonic != null)
+			{
+				maniaSonic.setOrientation(dspX, dspY, dspZ, getRotY(), getRotZ()-count*60);
+				maniaSonic.animate(12, 0);
+				setLimbsVisibility(false);
+			}
 			float height = 2;
 			Vector3f offset = new Vector3f(currNorm.x*height, currNorm.y*height, currNorm.z*height);
 			Vector3f prevPos = new Vector3f(previousDisplayPos);
@@ -1794,6 +1831,7 @@ public class Ball extends Entity
 			{
 				maniaSonic.setOrientation(dspX, dspY, dspZ, getRotY(), getRotZ()-count*35);
 				maniaSonic.animate(12, 0);
+				setLimbsVisibility(false);
 			}
 			//float height = 2;
 			//Vector3f pos = new Vector3f(getX()+currNorm.x*height, getY()+currNorm.y*height, getZ()+currNorm.z*height);
@@ -1807,6 +1845,7 @@ public class Ball extends Entity
 			{
 				maniaSonic.setOrientation(dspX, dspY, dspZ, getRotY(), getRotZ()-count*70);
 				maniaSonic.animate(12, 0);
+				setLimbsVisibility(false);
 			}
 			float height = 2;
 			Vector3f offset = new Vector3f(currNorm.x*height, currNorm.y*height, currNorm.z*height);
@@ -1830,6 +1869,7 @@ public class Ball extends Entity
 	    	if (maniaSonic != null)
 			{
 	    		maniaSonic.setOrientation(dspX, dspY, dspZ, getRotY(), getRotZ()+zrotoff);
+	    		setLimbsVisibility(false);
 				maniaSonic.animate(12, 0);
 			}
 		}
@@ -1842,22 +1882,26 @@ public class Ball extends Entity
 	    	if (maniaSonic != null)
 			{
 	    		maniaSonic.setOrientation(dspX, dspY, dspZ, getRotY(), getRotZ()+zrotoff);
+	    		setLimbsVisibility(false);
 				maniaSonic.animate(12, 0);
 			}
 		}
 		else if(onPlane && mySpeed < 0.01)
 		{
+			if (maniaSonic != null) { maniaSonic.setVisibility(false); }
 	    	float time =  (count * 1f) % 100;
 	    	updateLimbs(0, time);
 		}
 		else if(isSkidding)
 		{
+			if (maniaSonic != null) { maniaSonic.setVisibility(false); }
 			if (myBody != null) myBody.setBaseOrientation(displayPos, getRotY(), getRotZ());
 	    	updateLimbs(8, 0);
 		}
 		else if (hitTimer > 0)
 		{
 			if (myBody != null) myBody.setBaseOrientation(displayPos, getRotY(), getRotZ());
+			if (maniaSonic != null) { maniaSonic.setVisibility(false); }
 			updateLimbs(11, 0);
 		}
 		else
@@ -1868,9 +1912,10 @@ public class Ball extends Entity
 	    	if (maniaSonic != null)
 			{
 	    		maniaSonic.setOrientation(dspX, dspY, dspZ, getRotY(), getRotZ());
+	    		setLimbsVisibility(false);
 	    		
-	    		System.out.println(mySpeed);
-	    		if (mySpeed < 3.85f)
+	    		//System.out.println(mySpeed);
+	    		if (mySpeed < 3.9f)
 	    		{
 	    			maniaSonic.animate(15, time);
 	    		}
@@ -1881,22 +1926,22 @@ public class Ball extends Entity
 			}
 		}
 		
-		if (firstPerson) //dont do this every frame if you dont have to 
+		//if (firstPerson) //dont do this every frame if you dont have to 
 		{
-			setLimbsVisibility(false);
+			//setLimbsVisibility(false);
 		}
-		else
+		//else
 		{
-			if (iFrame % 4 == 2)
+			//if (iFrame % 4 == 2)
 			{
-				setLimbsVisibility(false);
+				//setLimbsVisibility(false);
 			}
-			else if (iFrame % 4 == 0)
+			//else if (iFrame % 4 == 0)
 			{
-				setLimbsVisibility(true);
-				if (maniaSonic != null)
+				//setLimbsVisibility(true);
+				//if (maniaSonic != null)
 				{
-					maniaSonic.setVisibility(true);
+					//maniaSonic.setVisibility(true);
 				}
 			}
 			
@@ -2244,6 +2289,22 @@ public class Ball extends Entity
 		{
 			maniaSonic = new ManiaSonicModels();
 			MainGameLoop.gameEntitiesToAdd.add(maniaSonic);
+			
+			displayHeightOffset = -.25f;
+			myBody =        new Body(modelBody);
+			myHead =        new Limb(modelHead,         0.3f, 1.2f, 0,       myBody, null);
+			myLeftHumerus = new Limb(modelLeftHumerus,  0, 0.9f, -0.9f,   myBody, null);
+			myLeftForearm = new Limb(modelLeftForearm,  1.3f, 0, 0, null, myLeftHumerus);
+			myLeftHand =    new Limb(modelLeftHand,     1.3f, 0, 0, null, myLeftForearm);
+			myLeftThigh =   new Limb(modelLeftThigh,    0, -0.9f, -0.3f,  myBody, null);
+			myLeftShin =    new Limb(modelLeftShin,     1.3f, 0, 0, null, myLeftThigh);
+			myLeftFoot =    new Limb(modelLeftFoot,     1.1f, 0, 0, null, myLeftShin);
+			myRightHumerus =new Limb(modelRightHumerus, 0, 0.9f, 0.9f,    myBody, null);
+			myRightForearm =new Limb(modelRightForearm, 1.3f, 0, 0, null, myRightHumerus);
+			myRightHand =   new Limb(modelRightHand,    1.3f, 0, 0, null, myRightForearm);
+			myRightThigh =  new Limb(modelRightThigh,   0, -0.9f, 0.3f,   myBody, null);
+			myRightShin =   new Limb(modelRightShin,    1.3f, 0, 0, null, myRightThigh);
+			myRightFoot =   new Limb(modelRightFoot,    1.1f, 0, 0, null, myRightShin);
 		}
 		
 		//myBall = new Entity(modelBall, new Vector3f(0,0,0));
@@ -2323,7 +2384,7 @@ public class Ball extends Entity
 		Limb playerRightFoot = new Limb(ConvenientMethods.loadModel("Models/Bomberman/", "Foot", loader), 3f, 0, 0, null, playerRightShin);
 		*/
 		
-		if (characterID != 4)
+		//if (characterID != 4)
 		{
 			AnimationResources.assignAnimationsHuman(myBody, myHead, 
 					myLeftHumerus, myLeftForearm, myLeftHand, 
@@ -2656,6 +2717,21 @@ public class Ball extends Entity
 		if (characterID == 4) //Mania Sonic
 		{
 			ManiaSonicModels.allocateStaticModels();
+			
+			if (modelBody == null) { modelBody = ConvenientMethods.loadModel("Models/SonicMania/", "Body"); }
+			if (modelHead == null) { modelHead = ConvenientMethods.loadModel("Models/SonicMania/", "Head"); }
+			if (modelLeftHumerus == null) { modelLeftHumerus = ConvenientMethods.loadModel("Models/SonicMania/", "Humerus"); }
+			if (modelLeftForearm == null) { modelLeftForearm = ConvenientMethods.loadModel("Models/SonicMania/", "Forearm"); }
+			if (modelLeftHand == null) { modelLeftHand = ConvenientMethods.loadModel("Models/SonicMania/", "HandLeft"); }
+			if (modelLeftThigh == null) { modelLeftThigh = ConvenientMethods.loadModel("Models/SonicMania/", "Thigh"); }
+			if (modelLeftShin == null) { modelLeftShin = ConvenientMethods.loadModel("Models/SonicMania/", "Shin"); }
+			if (modelLeftFoot == null) { modelLeftFoot = ConvenientMethods.loadModel("Models/SonicMania/", "ShoeLeft"); }
+			if (modelRightHumerus == null) { modelRightHumerus = ConvenientMethods.loadModel("Models/SonicMania/", "Humerus"); }
+			if (modelRightForearm == null) { modelRightForearm = ConvenientMethods.loadModel("Models/SonicMania/", "Forearm"); }
+			if (modelRightHand == null) { modelRightHand = ConvenientMethods.loadModel("Models/SonicMania/", "HandRight"); }
+			if (modelRightThigh == null) { modelRightThigh = ConvenientMethods.loadModel("Models/SonicMania/", "Thigh"); }
+			if (modelRightShin == null) { modelRightShin = ConvenientMethods.loadModel("Models/SonicMania/", "Shin"); }
+			if (modelRightFoot == null) { modelRightFoot = ConvenientMethods.loadModel("Models/SonicMania/", "ShoeRight"); }
 		}
 		
 	}

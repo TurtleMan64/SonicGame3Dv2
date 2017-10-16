@@ -169,6 +169,7 @@ public class MainGameLoop
 	public static boolean unlockedSonicDoll = false;
 	public static boolean unlockedMechaSonic = false;
 	public static boolean unlockedDage4 = false;
+	public static boolean unlockedManiaSonic = false;
 	
 	public static Random rnd = new Random();
 	
@@ -934,6 +935,9 @@ public class MainGameLoop
         int dage4 = in.nextInt();
         if (dage4 == 93389897) unlockedDage4 = true;
         
+        int maniaSonic = in.nextInt();
+        if (maniaSonic == 67895) unlockedManiaSonic = true;
+        
         in.close();
 	}
 	
@@ -958,6 +962,11 @@ public class MainGameLoop
 			
 			if (unlockedDage4)
 				bw.write("93389897 ");
+			else
+				bw.write("0 ");
+			
+			if (unlockedManiaSonic)
+				bw.write("67895 ");
 			else
 				bw.write("0 ");
 		}
