@@ -1691,9 +1691,25 @@ public class Ball extends Entity
 		float zrot = (float)Math.toDegrees(Math.atan2(ans.y, dist));
 		
 		Vector3f displayPos = new Vector3f(getX(), getY()+displayHeightOffset, getZ());
-		float dispX = displayPos.x;
-		float dispY = displayPos.y;
-		float dispZ = displayPos.z;
+		
+		Vector3f dspOff = new Vector3f(0,0,0);
+		if (onPlane)
+		{
+			if (isBouncing ||
+				isBall ||
+				isSpindashing ||
+				spindashReleaseTimer > 0)
+			{
+				dspOff = new Vector3f(currNorm.x*2.5f, currNorm.y*2.5f, currNorm.z*2.5f);
+			}
+			else
+			{
+				dspOff = new Vector3f(-currNorm.x*1, -currNorm.y*1, -currNorm.z*1);
+			}
+		}
+		float dspX = getX()+dspOff.x;
+		float dspY = getY()+dspOff.y;
+		float dspZ = getZ()+dspOff.z;
 		
 		Vector3f displayPosPrev = new Vector3f(previousPos);
 		displayPosPrev.y+=displayHeightOffset;
@@ -1705,7 +1721,7 @@ public class Ball extends Entity
 			if (myBody != null) myBody.setBaseOrientation(displayPos, yrot, zrot);
 			if (maniaSonic != null)
 			{
-				maniaSonic.setOrientation(displayPos, yrot, zrot);
+				maniaSonic.setOrientation(dspX, dspY, dspZ, yrot, zrot);
 			}
 			setRotY(yrot);
 			setRotZ(zrot);
@@ -1715,7 +1731,7 @@ public class Ball extends Entity
 			if (myBody != null) myBody.setBaseOrientation(displayPos, getRotY(), getRotZ());
 			if (maniaSonic != null)
 			{
-				maniaSonic.setOrientation(displayPos, getRotY(), getRotZ());
+				maniaSonic.setOrientation(dspX, dspY, dspZ, getRotY(), getRotZ());
 			}
 		}
 		
@@ -1776,7 +1792,7 @@ public class Ball extends Entity
 			if (myBody != null) myBody.setBaseOrientation(displayPos, getRotY(), getRotZ()-count*35);
 			if (maniaSonic != null)
 			{
-				maniaSonic.setOrientation(displayPos, getRotY(), getRotZ()-count*35);
+				maniaSonic.setOrientation(dspX, dspY, dspZ, getRotY(), getRotZ()-count*35);
 				maniaSonic.animate(12, 0);
 			}
 			//float height = 2;
@@ -1789,7 +1805,7 @@ public class Ball extends Entity
 			if (myBody != null) myBody.setBaseOrientation(displayPos, getRotY(), getRotZ()-count*70);
 			if (maniaSonic != null)
 			{
-				maniaSonic.setOrientation(displayPos, getRotY(), getRotZ()-count*70);
+				maniaSonic.setOrientation(dspX, dspY, dspZ, getRotY(), getRotZ()-count*70);
 				maniaSonic.animate(12, 0);
 			}
 			float height = 2;
@@ -1813,7 +1829,7 @@ public class Ball extends Entity
 	    	updateLimbs(12, 0);
 	    	if (maniaSonic != null)
 			{
-				maniaSonic.setOrientation(displayPos, getRotY(), getRotZ()+zrotoff);
+	    		maniaSonic.setOrientation(dspX, dspY, dspZ, getRotY(), getRotZ()+zrotoff);
 				maniaSonic.animate(12, 0);
 			}
 		}
@@ -1825,7 +1841,7 @@ public class Ball extends Entity
 	    	updateLimbs(12, 0);
 	    	if (maniaSonic != null)
 			{
-				maniaSonic.setOrientation(displayPos, getRotY(), getRotZ()+zrotoff);
+	    		maniaSonic.setOrientation(dspX, dspY, dspZ, getRotY(), getRotZ()+zrotoff);
 				maniaSonic.animate(12, 0);
 			}
 		}
@@ -1851,8 +1867,17 @@ public class Ball extends Entity
 	    	updateLimbs(1, time);
 	    	if (maniaSonic != null)
 			{
-				maniaSonic.setOrientation(displayPos, getRotY(), getRotZ());
-				maniaSonic.animate(1, time);
+	    		maniaSonic.setOrientation(dspX, dspY, dspZ, getRotY(), getRotZ());
+	    		
+	    		System.out.println(mySpeed);
+	    		if (mySpeed < 3.85f)
+	    		{
+	    			maniaSonic.animate(15, time);
+	    		}
+	    		else
+	    		{
+	    			maniaSonic.animate(1, time);
+	    		}
 			}
 		}
 		

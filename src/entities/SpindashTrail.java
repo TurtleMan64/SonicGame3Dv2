@@ -57,6 +57,13 @@ public class SpindashTrail// extends Entity
 					0, life, 0, 10, -(10.0f/life));
 				break;
 				
+			case 4: 
+				new Particle(ParticleResources.textureLightBlueTrail, 
+					new Vector3f(position),
+					new Vector3f(0, 0, 0),
+					0, life, 0, 10, -(10.0f/life));
+				break;
+				
 			default:
 				break;
 		}
@@ -95,6 +102,13 @@ public class SpindashTrail// extends Entity
 				
 			case 3: 
 				new Particle(ParticleResources.textureGrayTrail, 
+					new Vector3f(position),
+					new Vector3f(xVel, yVel, zVel),
+					gravity, life, 0, size, -(size/life));
+				break;
+				
+			case 4: 
+				new Particle(ParticleResources.textureLightBlueTrail, 
 					new Vector3f(position),
 					new Vector3f(xVel, yVel, zVel),
 					gravity, life, 0, size, -(size/life));
