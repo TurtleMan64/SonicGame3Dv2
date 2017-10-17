@@ -88,7 +88,7 @@ newmtl Shape.009
 	Tr 0
 	d 1.000000
 	illum 2
-	map_Kd 54EDCDC0_cD.png
+	map_Kd 54EDCDC0_c.png
 
 newmtl Shape.013
 	Ns 20.000000
@@ -166,7 +166,7 @@ newmtl Shape.025
 	Tr 0
 	d 1.000000
 	illum 2
-	map_Kd 54ED5B50_cD.png
+	map_Kd 54ED5B50_c.png
 
 newmtl Shape.027
 	Ns 20.000000
@@ -200,7 +200,7 @@ newmtl Shape.032
 	Tr 0
 	d 1.000000
 	illum 2
-	map_Kd 348D327E_cD.png
+	map_Kd 348D327E_c.png
 
 newmtl Shape.033
 	Ns 20.000000
@@ -212,7 +212,7 @@ newmtl Shape.033
 	Tr 0
 	d 1.000000
 	illum 2
-	map_Kd 414C1863_cD.png
+	map_Kd 414C1863_c.png
 
 newmtl Shape.034
 	Ns 20.000000
@@ -224,7 +224,7 @@ newmtl Shape.034
 	Tr 0
 	d 1.000000
 	illum 2
-	map_Kd 54ED72D0_cD.png
+	map_Kd 54ED72D0_c.png
 
 newmtl Shape.035
 	Ns 20.000000
@@ -247,7 +247,7 @@ newmtl Shape.036
 	Tr 0
 	d 1.000000
 	illum 2
-	map_Kd 3427FC8D_cD.png
+	map_Kd 3427FC8D_c.png
 
 newmtl Shape.041
 	Ns 20.000000
@@ -259,7 +259,7 @@ newmtl Shape.041
 	Tr 0
 	d 1.000000
 	illum 2
-	map_Kd 1B673EA2_cD.png
+	map_Kd 1B673EA2_c.png
 
 newmtl Shape.045
 	Ns 20.000000
@@ -271,7 +271,7 @@ newmtl Shape.045
 	d 1.000000
 	illum 2
 	Tr 0
-	map_Kd 5B902DC_cD.png
+	map_Kd 5B902DC_c.png
 
 newmtl Shape.080
 	Ns 20.000000
@@ -294,7 +294,7 @@ newmtl Shape.081
 	Tr 0
 	d 1.000000
 	illum 2
-	map_Kd 7CF6ED49_cD.png
+	map_Kd 7CF6ED49_c.png
 
 newmtl Shape.082
 	Ns 20.000000
@@ -515,7 +515,7 @@ newmtl Shape.121
 	Tr 0
 	d 1.000000
 	illum 2
-	map_Kd 3B39DBB5_cD.png
+	map_Kd 3B39DBB5_c.png
 
 newmtl Shape.125
 	Ns 20.000000
@@ -538,7 +538,7 @@ newmtl Shape.126
 	Tr 0
 	d 1.000000
 	illum 2
-	map_Kd 414C1243_cD.png
+	map_Kd 414C1243_c.png
 
 newmtl Shape.145
 	Ns 20.000000

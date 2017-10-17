@@ -252,4 +252,24 @@ public class SkyManager
 	{
 		centerObject = newCenter;
 	}
+	
+	public static void setSunColorDay(Vector3f newSunColor)
+	{
+		colourSunDay.set(newSunColor);
+	}
+	
+	public static void setSunColorNight(Vector3f newSunColor)
+	{
+		colourSunNight.set(newSunColor);
+	}
+	
+	public static void setMoonColorDay(Vector3f newSunColor)
+	{
+		colourMoonDay.set(newSunColor);
+	}
+	
+	public static void setMoonColorNight(Vector3f newSunColor)
+	{
+		colourMoonNight.set(newSunColor);
+	}
 }

@@ -186,6 +186,11 @@ public class LevelLoader
                 CollisionChecker.addCollideModel(colModel);
                 numChunks--;
         	}
+        	
+        	SkyManager.setSunColorDay(new Vector3f(nextFloat(input), nextFloat(input), nextFloat(input)));
+        	SkyManager.setSunColorNight(new Vector3f(nextFloat(input), nextFloat(input), nextFloat(input)));
+        	SkyManager.setMoonColorDay(new Vector3f(nextFloat(input), nextFloat(input), nextFloat(input)));
+        	SkyManager.setMoonColorNight(new Vector3f(nextFloat(input), nextFloat(input), nextFloat(input)));
 
         	Vector3f fogDay = new Vector3f(nextFloat(input), nextFloat(input), nextFloat(input));
         	Vector3f fogNight = new Vector3f(nextFloat(input), nextFloat(input), nextFloat(input));
