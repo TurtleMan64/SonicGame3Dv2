@@ -85,9 +85,10 @@ newmtl Shape.009
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.02
+	Tr 0
 	d 1.000000
 	illum 2
-	map_Kd 54EDCDC0_c.png
+	map_Kd 54EDCDC0_cD.png
 
 newmtl Shape.013
 	Ns 20.000000
@@ -162,9 +163,10 @@ newmtl Shape.025
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.02
+	Tr 0
 	d 1.000000
 	illum 2
-	map_Kd 54ED5B50_c.png
+	map_Kd 54ED5B50_cD.png
 
 newmtl Shape.027
 	Ns 20.000000
@@ -184,7 +186,7 @@ newmtl Shape.029
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.02
-	d 1.000000
+	d 0.000000
 	illum 2
 	map_Kd C5E5D6B_c.png
 
@@ -195,9 +197,10 @@ newmtl Shape.032
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.02
+	Tr 0
 	d 1.000000
 	illum 2
-	map_Kd 348D327E_c.png
+	map_Kd 348D327E_cD.png
 
 newmtl Shape.033
 	Ns 20.000000
@@ -206,9 +209,10 @@ newmtl Shape.033
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.02
+	Tr 0
 	d 1.000000
 	illum 2
-	map_Kd 414C1863_c.png
+	map_Kd 414C1863_cD.png
 
 newmtl Shape.034
 	Ns 20.000000
@@ -217,9 +221,10 @@ newmtl Shape.034
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.02
+	Tr 0
 	d 1.000000
 	illum 2
-	map_Kd 54ED72D0_c.png
+	map_Kd 54ED72D0_cD.png
 
 newmtl Shape.035
 	Ns 20.000000
@@ -239,9 +244,10 @@ newmtl Shape.036
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.02
+	Tr 0
 	d 1.000000
 	illum 2
-	map_Kd 3427FC8D_c.png
+	map_Kd 3427FC8D_cD.png
 
 newmtl Shape.041
 	Ns 20.000000
@@ -250,9 +256,10 @@ newmtl Shape.041
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.02
+	Tr 0
 	d 1.000000
 	illum 2
-	map_Kd 1B673EA2_c.png
+	map_Kd 1B673EA2_cD.png
 
 newmtl Shape.045
 	Ns 20.000000
@@ -263,7 +270,8 @@ newmtl Shape.045
 	Ni 0.02
 	d 1.000000
 	illum 2
-	map_Kd 5B902DC_c.png
+	Tr 0
+	map_Kd 5B902DC_cD.png
 
 newmtl Shape.080
 	Ns 20.000000
@@ -283,9 +291,10 @@ newmtl Shape.081
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.02
+	Tr 0
 	d 1.000000
 	illum 2
-	map_Kd 7CF6ED49_c.png
+	map_Kd 7CF6ED49_cD.png
 
 newmtl Shape.082
 	Ns 20.000000
@@ -503,9 +512,10 @@ newmtl Shape.121
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.02
+	Tr 0
 	d 1.000000
 	illum 2
-	map_Kd 3B39DBB5_c.png
+	map_Kd 3B39DBB5_cD.png
 
 newmtl Shape.125
 	Ns 20.000000
@@ -525,9 +535,10 @@ newmtl Shape.126
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.02
+	Tr 0
 	d 1.000000
 	illum 2
-	map_Kd 414C1243_c.png
+	map_Kd 414C1243_cD.png
 
 newmtl Shape.145
 	Ns 20.000000
@@ -646,7 +657,7 @@ newmtl Shape.220
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.02
-	d 1.000000
+	d 0.000000
 	illum 2
 	map_Kd C5E5A6B_c.png
 

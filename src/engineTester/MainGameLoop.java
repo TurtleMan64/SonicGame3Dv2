@@ -179,6 +179,7 @@ public class MainGameLoop
 	public static String multiplayerNickname = "";
 	public static String multiplayerServerIP = "localhost";
 	public static int multiplayerDelay = 100;
+	public static int multiplayerPort = 25566;
 	
 	public final static class gameStates
 	{
@@ -1050,6 +1051,10 @@ public class MainGameLoop
 					{
 						multiplayerServerIP = info[1];
 					}
+					else if (info[0].equals("Port"))
+					{
+						multiplayerPort = Integer.parseInt(info[1]);
+					}
 					else if (info[0].equals("Message_Delay"))
 					{
 						multiplayerDelay = Integer.parseInt(info[1]);
@@ -1061,7 +1066,7 @@ public class MainGameLoop
 		}
 		catch (Exception e)
 		{
-			System.out.println("Problem when trying to read 'Data/DisplaySettings.ini'");
+			System.out.println("Problem when trying to read 'Data/MultiplayerSettings.ini'");
 			e.printStackTrace();
 		}
 		finally

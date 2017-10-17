@@ -40,7 +40,7 @@ public class NetworkManager
 		Socket serverSocket = null;
 		try
 		{
-			serverSocket = new Socket(MainGameLoop.multiplayerServerIP, 25566);
+			serverSocket = new Socket(MainGameLoop.multiplayerServerIP, MainGameLoop.multiplayerPort);
 		}
 		catch (UnknownHostException e)
 		{
