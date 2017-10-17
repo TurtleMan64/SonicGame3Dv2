@@ -4,11 +4,15 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.ByteBuffer;
 import java.util.Scanner;
 
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
 import org.lwjgl.LWJGLException;
@@ -19,6 +23,8 @@ import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
 import org.lwjgl.opengl.PixelFormat;
+import org.newdawn.slick.opengl.ImageIOImageData;
+import org.newdawn.slick.opengl.PNGDecoder;
 import org.lwjgl.opengl.ContextAttribs;
 
 public class DisplayManager 
@@ -139,6 +145,13 @@ public class DisplayManager
 			//PixelFormat(Alpha Bits, Depth Bits, Stencil Bits, Samples)
 			//Display.create(new PixelFormat(8, 8, 0, 8), attribs); //makes shadows work for piner
 			Display.create(new PixelFormat().withDepthBits(24));
+			
+			ByteBuffer[] images = new ByteBuffer[3];
+			images[0] = loadIcon(new File("res/Icon16.png"));
+			images[1] = loadIcon(new File("res/Icon32.png"));
+			images[2] = loadIcon(new File("res/Icon64.png"));
+			Display.setIcon(images);
+			
 			//Display.create(new PixelFormat(), attribs);
 			//Display.create();
 			Display.setTitle("version 0.0010");
@@ -201,6 +214,41 @@ public class DisplayManager
 	{
 		return (Sys.getTime()*1000)/Sys.getTimerResolution();
 	}
+	
+	private static ByteBuffer loadIcon(File f)
+	{
+        InputStream is = null;
+        try
+        {
+        	is = new FileInputStream(f);
+            PNGDecoder decoder = new PNGDecoder(is);
+            ByteBuffer bb = ByteBuffer.allocateDirect(decoder.getWidth()*decoder.getHeight()*4);
+            decoder.decode(bb, decoder.getWidth()*4, PNGDecoder.RGBA);
+            bb.flip();
+            return bb;
+        } 
+        catch (FileNotFoundException e)
+        {
+			e.printStackTrace();
+		}
+        catch (IOException e)
+        {
+			e.printStackTrace();
+		}
+        finally
+        {
+            try 
+            {
+				is.close();
+			}
+            catch (IOException e)
+            {
+				e.printStackTrace();
+			}
+        }
+        
+        return null;
+    }
 	
 	private static void loadDataFile()
 	{
