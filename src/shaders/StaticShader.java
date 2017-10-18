@@ -41,6 +41,8 @@ public class StaticShader extends ShaderProgram
 	private int location_texOffY;
 	private int location_semiTransparent;
 	private int location_glowAmount;
+	private int location_fogDensity;
+	private int location_fogGradient;
 	
 	public StaticShader() 
 	{
@@ -76,6 +78,8 @@ public class StaticShader extends ShaderProgram
 		location_texOffY = super.getUniformLocation("texOffY");
 		location_semiTransparent = super.getUniformLocation("semiTransparent");
 		location_glowAmount = super.getUniformLocation("glowAmount");
+		location_fogDensity = super.getUniformLocation("fogDensity");
+		location_fogGradient = super.getUniformLocation("fogGradient");
 		
 		location_lightPosition = new int[MAX_LIGHTS];
 		location_lightColour = new int[MAX_LIGHTS];
@@ -109,6 +113,16 @@ public class StaticShader extends ShaderProgram
 	public void loadSkyColour(float r, float g, float b)
 	{
 		super.loadVector(location_skyColour, new Vector3f(r,g,b));
+	}
+	
+	public void loadFogDensity(float density)
+	{
+		super.loadFloat(location_fogDensity, density);
+	}
+	
+	public void loadFogGradient(float gradient)
+	{
+		super.loadFloat(location_fogGradient, gradient);
 	}
 	
 	public void loadFakeLightingVariable(boolean useFake)

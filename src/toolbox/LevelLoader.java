@@ -194,6 +194,10 @@ public class LevelLoader
 
         	Vector3f fogDay = new Vector3f(nextFloat(input), nextFloat(input), nextFloat(input));
         	Vector3f fogNight = new Vector3f(nextFloat(input), nextFloat(input), nextFloat(input));
+        	
+        	SkyManager.fogDensity = nextFloat(input);
+        	SkyManager.fogGradient = nextFloat(input);
+        	
         	float timeOfDay = nextFloat(input);//input.nextFloat();
         	//System.out.println("timeOfDay = '"+timeOfDay+"'");
         	

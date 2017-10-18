@@ -99,6 +99,9 @@ public class EntityRenderer
 		shader.loadToShadowSpaceMatrix2(toShadowSpace2);
 		float clockTime = (MainGameLoop.gameClock/60.0f); //old method = ((MainGameLoop.gameClock%60)/60.0f); gone because scroll can not sync on 1.5 for example
 		
+		shader.loadFogDensity(SkyManager.fogDensity);
+		shader.loadFogGradient(SkyManager.fogGradient);
+		
 		int numModels = entity.numberOfModels();
 		for (int i = 0; i < numModels; i++)
 		{

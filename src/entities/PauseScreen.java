@@ -284,61 +284,73 @@ public class PauseScreen
 						switch (menuSelection)
 						{
 							case 0:
+								MainGameLoop.levelID = MainGameLoop.levelIDs.EC;
 								LevelLoader.loadLevel("Snowhead.lvl", true);
 								unpause();
 								break;
 								
 							case 1:
+								MainGameLoop.levelID = MainGameLoop.levelIDs.SH;
 								LevelLoader.loadLevel("SpeedHighway.lvl", true);
 								unpause();
 								break;
 								
 							case 2:
+								MainGameLoop.levelID = MainGameLoop.levelIDs.GHZ;
 								LevelLoader.loadLevel("GreenHillZone.lvl", true);
 								unpause();
 								break;
 								
 							case 3:
+								MainGameLoop.levelID = MainGameLoop.levelIDs.WI;
 								LevelLoader.loadLevel("WuhuIsland.lvl", true);
 								unpause();
 								break;
 								
 							case 4:
+								MainGameLoop.levelID = MainGameLoop.levelIDs.PC;
 								LevelLoader.loadLevel("PeachCastle.lvl", true);
 								unpause();
 								break;
 								
 							case 5:
+								MainGameLoop.levelID = MainGameLoop.levelIDs.SHL;
 								LevelLoader.loadLevel("SandHill.lvl", true);
 								unpause();
 								break;
 								
 							case 6:
+								MainGameLoop.levelID = MainGameLoop.levelIDs.KB;
 								LevelLoader.loadLevel("KoopaTroopaBeach.lvl", true);
 								unpause();
 								break;
 								
 							case 7:
+								MainGameLoop.levelID = MainGameLoop.levelIDs.OI;
 								LevelLoader.loadLevel("OutsetIsland.lvl", true);
 								unpause();
 								break;
 								
 							case 8:
+								MainGameLoop.levelID = MainGameLoop.levelIDs.WB;
 								LevelLoader.loadLevel("WeaponsBed.lvl", true);
 								unpause();
 								break;
 								
 							case 9:
+								MainGameLoop.levelID = MainGameLoop.levelIDs.MH;
 								LevelLoader.loadLevel("MetalHarbor.lvl", true);
 								unpause();
 								break;
 								
 							case 10:
+								MainGameLoop.levelID = MainGameLoop.levelIDs.BOB;
 								LevelLoader.loadLevel("BobOmbBattlefield.lvl", true);
 								unpause();
 								break;
 								
 							case 11:
+								MainGameLoop.levelID = MainGameLoop.levelIDs.RR;
 								LevelLoader.loadLevel("RainbowRoad.lvl", true);
 								unpause();
 								break;

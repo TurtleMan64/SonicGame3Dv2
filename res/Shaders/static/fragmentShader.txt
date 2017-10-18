@@ -167,7 +167,7 @@ void main(void)
 	
 	
 	out_Colour = clamp(out_Colour, 0.0, 1.0);
-	//out_Colour = 0.5f+(0.5*sin((out_Colour*3.14159)-1.570795));//post effects aw yea
+	//out_Colour = 0.5f+(0.5*sin((out_Colour*3.14159)-1.570795)); //more saturated look
 	
 	
 	//if(glowAmount > 0.5)

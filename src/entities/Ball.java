@@ -1965,6 +1965,29 @@ public class Ball extends Entity
 		//myBall.setRotY(getRotY());
 		//myBall.setRotZ(MainGameLoop.gameClock*(-30));
 		
+		switch (MainGameLoop.levelID)
+		{
+			case MainGameLoop.levelIDs.EC:
+				float radius2 = MainGameLoop.snowRadius*2;
+				float radius = MainGameLoop.snowRadius;
+				float basex = getX() - radius;
+				float basey = getY();
+				float basez = getZ() - radius;
+				int density = MainGameLoop.snowDensity;
+				for (int i = 0; i < density; i++)
+				{
+					new Particle(ParticleResources.textureSnowball, 
+							new Vector3f(basex + radius2*(float)Math.random(),
+										 basey + radius*(float)Math.random(),
+										 basez + radius2*(float)Math.random()), 
+							new Vector3f(0.25f*7.5f, -0.4f*7.5f, 0.15f*7.5f), 0, 80, 0, (float)Math.random()+0.75f, -0.02f);//original y vel = -0.5
+				}
+				break;
+		
+			default : 
+				break;
+		}
+		
 		previousDisplayPos.set(displayPos);
 	}
 	

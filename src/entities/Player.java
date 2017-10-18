@@ -603,7 +603,7 @@ public class Player extends Entity
 
 		switch(MainGameLoop.levelID)
 		{
-			case MainGameLoop.levelIDs.CCM :
+			case 0://MainGameLoop.levelIDs.CCM :
 				float radius2 = MainGameLoop.snowRadius*2;
 				float radius = MainGameLoop.snowRadius;
 				float basex = super.getX() - radius;
@@ -612,10 +612,10 @@ public class Player extends Entity
 				int density = MainGameLoop.snowDensity;
 				for(int i = 0; i < density; i++)
 				{
-					new Particle(ParticleResources.textureSnowDrop, 
+					new Particle(ParticleResources.textureSnowDrop,
 							new Vector3f(basex + radius2*(float)Math.random(),
 										 basey + radius*(float)Math.random(),
-										 basez + radius2*(float)Math.random()), 
+										 basez + radius2*(float)Math.random()),
 							new Vector3f(0, -0.25f, 0), 0, 60, 0, (float)Math.random()+0.75f, -0.03f);//original y vel = -0.5
 				}
 				break;

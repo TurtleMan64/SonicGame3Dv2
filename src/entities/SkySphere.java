@@ -50,37 +50,37 @@ public class SkySphere extends Entity
 		
 		switch(MainGameLoop.levelID)
 		{
-			case MainGameLoop.levelIDs.PSS: 
+			//c//ase MainGameLoop.levelIDs.PSS: 
 				//super.setVisibility(false);
-				break;
+				//break;
 				
-			case MainGameLoop.levelIDs.CCMSlide:
+			//case MainGameLoop.levelIDs.CCMSlide:
 				//super.setModels(skyBlack);
-				break;
+				//break;
 				
-			case MainGameLoop.levelIDs.WF:
+			//case MainGameLoop.levelIDs.WF:
 				//super.setModels(skySkyHigh);
-				break;
+				//break;
 				
-			case MainGameLoop.levelIDs.BOB:
+			//case MainGameLoop.levelIDs.BOB:
 				//super.setModels(skyIslands);
-				break;
+				//break;
 				
-			case MainGameLoop.levelIDs.CCM:
+			//case MainGameLoop.levelIDs.CCM:
 				//super.setModels(skyIceMountains);
-				break;
+				//break;
 				
-			case MainGameLoop.levelIDs.JRB:
+			//case MainGameLoop.levelIDs.JRB:
 				//super.setModels(skyClouds);
-				break;
+				//break;
 				
-			case MainGameLoop.levelIDs.HUB:
+			//case MainGameLoop.levelIDs.HUB:
 				//super.setModels(skyIslands);
-				break;
+				//break;
 				
-			case MainGameLoop.levelIDs.LLL:
+			//case MainGameLoop.levelIDs.LLL:
 				//super.setModels(skyFireSea);
-				break;
+				//break;
 				
 			default:
 				//super.setVisibility(false);

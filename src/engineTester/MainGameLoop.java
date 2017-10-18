@@ -192,14 +192,19 @@ public class MainGameLoop
 	
 	public final static class levelIDs
 	{
-		public static final int HUB = 0,
-				                BOB = 1,
-				                WF = 2,
-				                JRB = 3,
-				                CCM = 4,
-				                CCMSlide = 5,
-				                PSS = 6, 
-				                LLL = 7;
+		public static final int EC = 0,
+				                SH = 1,
+				                GHZ = 2,
+				                WI = 3,
+				                PC = 4,
+				                SHL = 5,
+				                KB = 6,
+				                OI = 7,
+								WB = 8,
+								MH = 9,
+								BOB = 10,
+								RR = 11,
+								SHD = 12;
 	}
 	
 	public static void main(String[] args) 
@@ -222,8 +227,8 @@ public class MainGameLoop
 		starList = new boolean[120];
 		gameClock = 0;
 		gameState = 1;
-		snowRadius = 100;
-		snowDensity = 10;//10
+		snowRadius = 110;
+		snowDensity = 15;//10
 		levelID = 0;
 		freeCamera = true;
 		

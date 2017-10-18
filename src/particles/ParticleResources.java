@@ -27,7 +27,7 @@ public class ParticleResources
 	{
 		textureSnowDrop = new ParticleTexture(MainGameLoop.gameLoader.loadTexture("Models/Particle/SnowDropAtlas"), 2, 1.0f, 0);
 		textureDustCloud = new ParticleTexture(MainGameLoop.gameLoader.loadTexture("Models/Particle/41257828"), 1, 0.2f, 0);
-		textureSnowball = new ParticleTexture(MainGameLoop.gameLoader.loadTexture("Models/Particle/1F3C3CE8"), 1, 1.0f, 0);
+		textureSnowball = new ParticleTexture(MainGameLoop.gameLoader.loadTexture("Models/Particle/Snowball"), 1, 0.75f, 0);
 		textureStar = new ParticleTexture(MainGameLoop.gameLoader.loadTexture("Models/Particle/Star"), 1, 1.0f, 0);
 		textureSparkleYellow = new ParticleTexture(MainGameLoop.gameLoader.loadTexture("Models/Particle/Sparkle"), 1, 1.0f, 1);
 		textureSparkleRed = new ParticleTexture(MainGameLoop.gameLoader.loadTexture("Models/Particle/SparkleRed"), 1, 1.0f, 1);

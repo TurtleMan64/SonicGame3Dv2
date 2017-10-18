@@ -28,6 +28,9 @@ public class SkyManager
 
 	private static Vector3f colourFogDayOutside;
 	private static Vector3f colourFogNightOutside;
+	
+	public static float fogDensity = 0.00005f;
+	public static float fogGradient = 2.0f;
 
 	private static float dayFactor;
 	private static float nightFactor;
