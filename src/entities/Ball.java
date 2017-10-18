@@ -1967,7 +1967,7 @@ public class Ball extends Entity
 		
 		switch (MainGameLoop.levelID)
 		{
-			case MainGameLoop.levelIDs.EC:
+			case MainGameLoop.levelIDs.SHD:
 				float radius2 = MainGameLoop.snowRadius*2;
 				float radius = MainGameLoop.snowRadius;
 				float basex = getX() - radius;

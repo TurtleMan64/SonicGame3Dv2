@@ -72,6 +72,7 @@ public class PauseScreen
 	private static GUIText textMetalHarbor = null;
 	private static GUIText textBOB = null;
 	private static GUIText textRainbowRoad = null;
+	private static GUIText textSnowhead = null;
 	
 	private static GUIText textClassicSonic = null;
 	private static GUIText textDollSonic = null;
@@ -213,7 +214,7 @@ public class PauseScreen
 								
 							case 2:
 								menuDisplayID = LEVEL_SELECT;
-								menuSelectionMAX = 11;
+								menuSelectionMAX = 12;
 								menuSelection = 0;
 								textResume.setVisibility(false);
 								textRestart.setVisibility(false);
@@ -233,6 +234,7 @@ public class PauseScreen
 								textMetalHarbor.setVisibility(true);
 								textBOB.setVisibility(true);
 								textRainbowRoad.setVisibility(true);
+								textSnowhead.setVisibility(true);
 								
 								textClassicSonic.setVisibility(false);
 								textDollSonic.setVisibility(false);
@@ -263,6 +265,7 @@ public class PauseScreen
 								textMetalHarbor.setVisibility(false);
 								textBOB.setVisibility(false);
 								textRainbowRoad.setVisibility(false);
+								textSnowhead.setVisibility(false);
 								
 								textClassicSonic.setVisibility(true);
 								textDollSonic.setVisibility(true);
@@ -285,7 +288,7 @@ public class PauseScreen
 						{
 							case 0:
 								MainGameLoop.levelID = MainGameLoop.levelIDs.EC;
-								LevelLoader.loadLevel("Snowhead.lvl", true);
+								LevelLoader.loadLevel("EmeraldCoast.lvl", true);
 								unpause();
 								break;
 								
@@ -352,6 +355,12 @@ public class PauseScreen
 							case 11:
 								MainGameLoop.levelID = MainGameLoop.levelIDs.RR;
 								LevelLoader.loadLevel("RainbowRoad.lvl", true);
+								unpause();
+								break;
+								
+							case 12:
+								MainGameLoop.levelID = MainGameLoop.levelIDs.SHD;
+								LevelLoader.loadLevel("Snowhead.lvl", true);
 								unpause();
 								break;
 								
@@ -430,6 +439,7 @@ public class PauseScreen
 					textMetalHarbor.setVisibility(false);
 					textBOB.setVisibility(false);
 					textRainbowRoad.setVisibility(false);
+					textSnowhead.setVisibility(false);
 					
 					textClassicSonic.setVisibility(false);
 					textDollSonic.setVisibility(false);
@@ -459,7 +469,7 @@ public class PauseScreen
 					break;
 					
 				case LEVEL_SELECT:
-					float spacing = 1/12.0f;
+					float spacing = 1/13.0f;
 					switch (menuSelection)
 					{
 						case 0: textCursor.getPosition().y = 0.0f; break;
@@ -485,6 +495,8 @@ public class PauseScreen
 						case 10: textCursor.getPosition().y = spacing*10; break;
 						
 						case 11: textCursor.getPosition().y = spacing*11; break;
+						
+						case 12: textCursor.getPosition().y = spacing*12; break;
 					}
 					break;
 					
@@ -616,6 +628,11 @@ public class PauseScreen
 			textRainbowRoad.delete();
 			textRainbowRoad = null;
 		}
+		if (textSnowhead != null)
+		{
+			textSnowhead.delete();
+			textSnowhead = null;
+		}
 		
 		if (textClassicSonic != null)
 		{
@@ -665,7 +682,7 @@ public class PauseScreen
 		textCharSelect = new GUIText("Character Select", 3, font, new Vector2f(0.5f, 0.6f), 1f, false, true);
 		textQuit = new GUIText("Quit Game", 3, font, new Vector2f(0.5f, 0.7f), 1f, false, true);
 		
-		float spacing = 1/12.0f;
+		float spacing = 1/13.0f;
 		
 		textEmeraldCoast = new GUIText("Emerald Coast", 3, font, new Vector2f(0.5f, 0.0f), 1f, false, false);
 		textSpeedHighway = new GUIText("Speed Highway", 3, font, new Vector2f(0.5f, spacing), 1f, false, false);
@@ -679,6 +696,7 @@ public class PauseScreen
 		textMetalHarbor = new GUIText("Metal Harbor", 3, font, new Vector2f(0.5f, spacing*9), 1f, false, false);
 		textBOB = new GUIText("Bob-omb Btlfld", 3, font, new Vector2f(0.5f, spacing*10), 1f, false, false);
 		textRainbowRoad = new GUIText("Rainbow Road", 3, font, new Vector2f(0.5f, spacing*11), 1f, false, false);
+		textSnowhead = new GUIText("Snowhead", 3, font, new Vector2f(0.5f, spacing*12), 1f, false, false);
 		
 		textClassicSonic = new GUIText("Classic Sonic", 3, font, new Vector2f(0.5f, 0.3f), 1f, false, false);
 		textDollSonic = new GUIText("Sonic Doll", 3, font, new Vector2f(0.5f, 0.4f), 1f, false, false);
