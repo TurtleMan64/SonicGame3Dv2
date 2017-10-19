@@ -89,9 +89,13 @@ public class OBJFileLoader
 	        	if(lineTexture.startsWith("newmtl"))
 	        	{
 	        		textureNamesList.add(currentLineTexture[1]);
-	        		currentGlowAmountValue = 0.0f;
-	        		currentScrollXValue = 0.0f;
-	                currentScrollYValue = 0.0f;
+	        		currentShineDamperValue = 0.0f;
+	    	        currentReflectivityValue = 0.0f;
+	    	        currentTransparencyValue = 1.0f;
+	    	        currentFakeLightingValue = 1.0f;
+	    	        currentGlowAmountValue = 0.0f;
+	    	        currentScrollXValue = 0.0f;
+	    	        currentScrollYValue = 0.0f;
 	        		//System.out.println("adding "+currentLineTexture[1]+" to the textureNamesList");
 	        	}
 	        	else if(lineTexture.startsWith("	map_Kd"))
@@ -527,8 +531,12 @@ public class OBJFileLoader
                     	if(lineTexture.startsWith("newmtl"))
                     	{
                     		textureNamesList.add(currentLineTexture[1]);
-                    		currentGlowAmountValue = 0.0f;
-                    		currentScrollXValue = 0.0f;
+                            currentShineDamperValue = 0.0f;
+                            currentReflectivityValue = 0.0f;
+                            currentTransparencyValue = 1.0f;
+                            currentFakeLightingValue = 1.0f;
+                            currentGlowAmountValue = 0.0f;
+                            currentScrollXValue = 0.0f;
                             currentScrollYValue = 0.0f;
                     		//System.out.println("adding "+currentLineTexture[1]+" to the textureNamesList");
                     	}
