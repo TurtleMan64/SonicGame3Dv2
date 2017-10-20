@@ -25,7 +25,7 @@ public class Triangle3D
 	public byte type;
 		//0 = normal
 		//1 = slippery
-	public byte sound;
+	public int sound;
 		//0 = floor step
 	    //1 = grass step
 		//2 = snow step
@@ -41,7 +41,7 @@ public class Triangle3D
 	public float maxZ;
 	public float minZ;
 	
-	public Triangle3D(Vector3f newP1, Vector3f newP2, Vector3f newP3, byte type, byte sound, byte particle)
+	public Triangle3D(Vector3f newP1, Vector3f newP2, Vector3f newP3, byte type, int sound, byte particle)
 	{
 		//this.p1 = newP1;
 		this.p1X = newP1.x;
@@ -148,7 +148,7 @@ public class Triangle3D
 		return (type == 1);
 	}
 	
-	public byte getStepSound()
+	public int getStepSound()
 	{
 		return sound;
 	}

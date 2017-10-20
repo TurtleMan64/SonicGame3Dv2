@@ -636,7 +636,7 @@ public class OBJFileLoader
         
         ArrayList<FakeTexture> fakeTextures = new ArrayList<FakeTexture>();
         byte currType = 0;
-        byte currSound = 38;
+        int currSound = 0;
         byte currParticle = 0;
         
         try 
@@ -732,14 +732,14 @@ public class OBJFileLoader
                     if(line != null && line.startsWith("usemtl ") && vertices.size() > 0)
                     { //This could for sure be better!
                     	currType = (byte)0;
-                    	currSound = (byte)38;
+                    	currSound = -1;
                     	currParticle = (byte)0;
                     	currentLine = line.split(" ");
                     	for(int i = 0; i < fakeTextures.size(); i++)
                     	{
                     		FakeTexture dummy = fakeTextures.get(i);
                     		//System.out.println(dummy + " "+ currentLine[1]);
-                    		if(dummy.name.equals(currentLine[1]))
+                    		if (dummy.name.equals(currentLine[1]))
                     		{
                     			//System.out.println("adding "+currentLine[1]+" to the modelTextures");
                     			currType = dummy.type;
@@ -754,7 +754,7 @@ public class OBJFileLoader
                 else if(line.startsWith("usemtl "))//first usetml found, before any faces entered
                 {
                 	currType = (byte)0;
-                	currSound = (byte)38;
+                	currSound = -1;
                 	currParticle = (byte)0;
                 	String[] currentLine = line.split(" ");
                 	for(int i = 0; i < fakeTextures.size(); i++)
@@ -806,7 +806,7 @@ public class OBJFileLoader
                     	}
                     	else if(lineTexture.contains("sound"))
                     	{
-                    		fakeTextures.get(fakeTextures.size()-1).setSound((byte)Math.round(Float.parseFloat(currentLineTexture[1])));
+                    		fakeTextures.get(fakeTextures.size()-1).setSound((int)Math.round(Float.parseFloat(currentLineTexture[1])));
                     	}
                     	else if(lineTexture.contains("particle"))
                     	{

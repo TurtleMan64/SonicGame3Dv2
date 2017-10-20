@@ -4,13 +4,13 @@ public class FakeTexture
 {
 	public String name;
 	public byte type;
-	public byte sound;
+	public int sound;
 	public byte particle;
 	
 	public FakeTexture()
 	{
 		type = (byte)0;
-		sound = (byte)38;
+		sound = -1;
 		particle = (byte)0;
 	}
 	
@@ -24,7 +24,7 @@ public class FakeTexture
 		this.type = type;
 	}
 	
-	public void setSound(byte sound)
+	public void setSound(int sound)
 	{
 		this.sound = sound;
 	}

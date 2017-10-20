@@ -27,12 +27,12 @@ public class AudioSources
 	{
 		try
 		{
-			buffers.add(AudioMaster.loadSound(("/res/Audio/sonic/S1/S1_FootstepDummy1.wav"))); //0
-			buffers.add(AudioMaster.loadSound(("/res/Audio/sonic/S1/S1_FootstepDummy2.wav"))); //1
-			buffers.add(AudioMaster.loadSound(("/res/Audio/sonic/S1/S1_FootstepDummy3.wav"))); //2
-			buffers.add(AudioMaster.loadSound(("/res/Audio/sonic/S1/S1_FootstepDummy4.wav"))); //3
-			buffers.add(AudioMaster.loadSound(("/res/Audio/sonic/S1/S1_FootstepDummy5.wav"))); //4
-			buffers.add(AudioMaster.loadSound(("/res/Audio/sonic/S1/S1_FootstepDummy6.wav"))); //5
+			buffers.add(AudioMaster.loadSound(("/res/Audio/sonic/Footsteps/step_neutral.wav")));  //0
+			buffers.add(AudioMaster.loadSound(("/res/Audio/sonic/Footsteps/step_snow.wav")));     //1
+			buffers.add(AudioMaster.loadSound(("/res/Audio/sonic/Footsteps/step_grass.wav")));    //2
+			buffers.add(AudioMaster.loadSound(("/res/Audio/sonic/Footsteps/step_sand.wav")));     //3
+			buffers.add(AudioMaster.loadSound(("/res/Audio/sonic/Footsteps/step_water.wav")));    //4
+			buffers.add(AudioMaster.loadSound(("/res/Audio/sonic/S1/S1_FootstepDummy6.wav")));    //5
 			buffers.add(AudioMaster.loadSound(("/res/Audio/sonic/S1/mono/S1_Jump.wav")));           //6
 			buffers.add(AudioMaster.loadSound(("/res/Audio/sonic/S1/mono/S1_SpindashCharge.wav"))); //7
 			buffers.add(AudioMaster.loadSound(("/res/Audio/sonic/S1/mono/S1_SpindashRelease.wav")));//8

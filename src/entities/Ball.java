@@ -1775,8 +1775,34 @@ public class Ball extends Entity
 		{
 			modelRunIndex = 0;
 		}
-		
-		//myBall.setVisibility(false);
+
+		//footsteps
+		if (onPlane)
+		{
+			if (isBall ||
+				isSpindashing ||
+				spindashReleaseTimer > 0)
+			{
+				//if ((modelRunIndex < 5 && modelRunIndex+modelIncreaseVal >= 5) ||
+				//	(modelRunIndex < 10 && modelRunIndex+modelIncreaseVal >= 10) ||
+				//	(modelRunIndex < 15 && modelRunIndex+modelIncreaseVal >= 15) ||
+				//	(modelRunIndex < 20 && modelRunIndex+modelIncreaseVal >= 20))
+				if (MainGameLoop.gameClock % 2 == 0)
+				{
+					spawnFootsetpParticles();
+					//AudioSources.play(Math.max(triCol.sound, 0), getPosition(), 0.8f+mySpeed*0.05f+(float)Math.random()*0.4f);
+				}
+			}
+			else if ((modelRunIndex < 10 && modelRunIndex+modelIncreaseVal >= 10 ||
+				 modelRunIndex < 20 && modelRunIndex+modelIncreaseVal >= 20))
+			{
+				spawnFootsetpParticles();
+				//if (triCol.sound >= 0)
+				{
+					AudioSources.play(Math.max(triCol.sound, 0), getPosition(), 0.8f+mySpeed*0.05f+(float)Math.random()*0.4f);
+				}
+			}
+		}
 		
 		
 		if (homingAttackTimer > 0)
@@ -2811,5 +2837,42 @@ public class Ball extends Entity
 	public Body getBody()
 	{
 		return myBody;
+	}
+	
+	private void spawnFootsetpParticles()
+	{
+		switch (triCol.getParticle())
+		{
+			case 0: 
+				break;
+			
+			case 1:
+				for (int i = 10; i != 0; i--)
+				{
+					new Particle(ParticleResources.textureSnowball, 
+							new Vector3f(getX()+3*(float)(Math.random()-0.5f), 
+										 getY()+0.75f,
+										 getZ()+3*(float)(Math.random()-0.5f)),
+							new Vector3f((float)Math.random()-0.5f, 
+									     (float)(Math.random()*0.5+0.5f), 
+									     (float)Math.random()-0.5f), 
+							0.1f, 20, 0, (float)Math.random()+0.6f, 0);
+				}
+				break;
+				
+			case 2:
+				for (int i = 10; i != 0; i--)
+				{
+					new Particle(ParticleResources.textureWaterDrop, 
+							new Vector3f(getX(), getY()+2, getZ()), 
+							new Vector3f((float)Math.random()-0.5f, 
+									     (float)(Math.random()*0.5+0.5f), 
+									     (float)Math.random()-0.5f), 
+							0.1f, 20, 0, (float)Math.random()+0.6f, 0);
+				}
+			
+			default: 
+				break;
+		}
 	}
 }
