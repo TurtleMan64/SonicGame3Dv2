@@ -1,5 +1,5 @@
-# Blender MTL File: 'None'
-# Material Count: 98
+	# Blender MTL File: 'None'
+	# Material Count: 101
 
 newmtl Shape.000
 	Ns 17.647059
@@ -63,7 +63,7 @@ newmtl Shape.005
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.02
-	d 1.000000
+	d 0.000000
 	illum 2
 	map_Kd 20F88869_c.png
 
@@ -129,8 +129,8 @@ newmtl Shape.010_194E92C8_c.png
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.02
-	Tr 0
 	d 1.000000
+	Tr 0
 	illum 2
 	map_Kd 194E92C8_c.png
 
@@ -185,7 +185,7 @@ newmtl Shape.013
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.02
-	d 1.000000
+	d 0.000000
 	illum 2
 	map_Kd 3EF0EBB9_c.png
 
@@ -218,7 +218,7 @@ newmtl Shape.017
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.02
-	d 1.000000
+	d 0.000000
 	illum 2
 	map_Kd 19D6FF12_c.png
 
@@ -263,6 +263,8 @@ newmtl Shape.023
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.02
 	d 1.000000
+	particle 1
+	sound 1
 	illum 2
 	map_Kd 7CF6ED49_c.png
 
@@ -310,6 +312,17 @@ newmtl Shape.027
 	illum 2
 	map_Kd 58AFEC7C_c.png
 
+newmtl Shape.027_6BCF161E_c.png
+	Ns 17.647059
+	Ka 1.000000 1.000000 1.000000
+	Kd 0.796875 0.796875 0.796875
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	Ni 0.02
+	d 1.000000
+	illum 2
+	map_Kd 6BCF161E_c.png
+
 newmtl Shape.028
 	Ns 17.647059
 	Ka 1.000000 1.000000 1.000000
@@ -354,6 +367,17 @@ newmtl Shape.032
 	illum 2
 	map_Kd 348D327E_c.png
 
+newmtl Shape.032_414C1863_c.png
+	Ns 17.647059
+	Ka 1.000000 1.000000 1.000000
+	Kd 0.462500 0.381250 0.387500
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	Ni 0.02
+	d 1.000000
+	illum 2
+	map_Kd 414C1863_c.png
+
 newmtl Shape.033
 	Ns 17.647059
 	Ka 1.000000 1.000000 1.000000
@@ -397,6 +421,17 @@ newmtl Shape.037
 	d 1.000000
 	illum 2
 	map_Kd 6DCF7BCE_c.png
+
+newmtl Shape.037_414C1243_c.png
+	Ns 17.647059
+	Ka 1.000000 1.000000 1.000000
+	Kd 0.434375 0.365625 0.378125
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	Ni 0.02
+	d 1.000000
+	illum 2
+	map_Kd 414C1243_c.png
 
 newmtl Shape.039
 	Ns 17.647059
@@ -506,7 +541,7 @@ newmtl Shape.051
 	Ni 0.02
 	d 1.000000
 	illum 2
-	map_Kd 414C1863_c.png
+	map_Kd 3427FC8D_c.png
 
 newmtl Shape.052
 	Ns 17.647059
@@ -549,6 +584,8 @@ newmtl Shape.055
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.02
 	d 1.000000
+	particle 1
+	sound 1
 	illum 2
 	map_Kd 7B951522_c.png
 
@@ -625,7 +662,7 @@ newmtl Shape.094
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.02
-	d 1.000000
+	d 0.000000
 	illum 2
 	map_Kd 1023AA8D_c.png
 
@@ -725,6 +762,8 @@ newmtl Shape.125
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.02
 	d 1.000000
+	particle 1
+	sound 1
 	illum 2
 	map_Kd 1A326A75_c.png
 
@@ -748,7 +787,7 @@ newmtl Shape.126_414C1243_c.png
 	Ni 0.02
 	d 0.000000
 	illum 2
-	map_Kd 414C1243_c.png
+	map_Kd D0D7ADA_c.png
 
 newmtl Shape.126_6BCF161E_c.png
 	Ns 17.647059
@@ -889,7 +928,7 @@ newmtl Shape.178
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.02
-	d 1.000000
+	d 0.000000
 	illum 2
 	map_Kd 46C1BD81_c.png
 
@@ -1010,8 +1049,8 @@ newmtl Shape.225
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.02
-	Tr 0
 	d 1.000000
+	Tr 0
 	illum 2
 	map_Kd 26C7F727_c.png
 
@@ -1033,7 +1072,7 @@ newmtl Shape.356
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.02
-	d 1.000000
+	d 0.000000
 	illum 2
 	map_Kd 79893EBC_c.png
 
@@ -1044,7 +1083,7 @@ newmtl Shape.362
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.02
-	d 1.000000
+	d 0.000000
 	illum 2
 	map_Kd 1C9CBC5B_c.png
 
