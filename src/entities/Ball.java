@@ -1799,7 +1799,14 @@ public class Ball extends Entity
 				spawnFootsetpParticles();
 				//if (triCol.sound >= 0)
 				{
-					AudioSources.play(Math.max(triCol.sound, 0), getPosition(), 0.8f+mySpeed*0.05f+(float)Math.random()*0.4f);
+					if (getY() > -0.5f)
+					{
+						AudioSources.play(Math.max(triCol.sound, 0), getPosition(), 0.8f+mySpeed*0.05f+(float)Math.random()*0.4f);
+					}
+					else
+					{
+						AudioSources.play(4, getPosition(), 0.8f+mySpeed*0.05f+(float)Math.random()*0.4f);
+					}
 				}
 			}
 		}
@@ -2841,7 +2848,13 @@ public class Ball extends Entity
 	
 	private void spawnFootsetpParticles()
 	{
-		switch (triCol.getParticle())
+		int particle = triCol.getParticle();
+		if (getY() < -0.5f)
+		{
+			particle = 2;
+		}
+		
+		switch (particle)
 		{
 			case 0: 
 				break;
