@@ -482,11 +482,30 @@ public class Ball extends Entity
 			
 			if(jumpInput && !previousJumpInput)
 			{
+				//original
+				/*
 				increasePosition(currNorm.x*surfaceTension, currNorm.y*surfaceTension, currNorm.z*surfaceTension);
 				yVel += currNorm.y*jumpPower;
 				xVel += currNorm.x*jumpPower;
 				zVel += currNorm.z*jumpPower;
 				isJumping = true;
+				*/
+				
+				//testing
+				
+				increasePosition(currNorm.x*2, currNorm.y*2, currNorm.z*2);
+				xVelAir = xVel+currNorm.x*jumpPower;
+				zVelAir = zVel+currNorm.z*jumpPower;
+				yVel =    yVel+currNorm.y*jumpPower;
+				xVel = 0;
+				zVel = 0;
+				relativeXVel = 0;
+				relativeZVel = 0;
+				isJumping = true;
+				onPlane = false;
+				
+				
+				
 				//AudioRes.playSound(50, 1.0f, getPosition());
 				AudioSources.play(6, getPosition());
 			}

@@ -23,6 +23,8 @@ import entities.Dashpad;
 import entities.Entity;
 import entities.GoalSign;
 import entities.GoalTrigger;
+import entities.GoronElder;
+import entities.GoronKid;
 import entities.ItemCapsule;
 import entities.KillBox;
 import entities.ManiaSonicModels;
@@ -542,6 +544,17 @@ public class LevelLoader
 										 nextFloat(in), nextFloat(in), nextFloat(in)));
 				return;
 				
+			case 35: //Baby Goron
+				GoronKid.allocateStaticModels();
+				entities.add(new GoronKid(new Vector3f(nextFloat(in), nextFloat(in), nextFloat(in))));
+				return;
+				
+			case 36: //Elder Goron
+				GoronElder.allocateStaticModels();
+				entities.add(new GoronElder(new Vector3f(nextFloat(in), nextFloat(in), nextFloat(in)),
+														 nextFloat(in), in.nextLine()));
+				return;
+				
 			default:
 				break;
 		}
@@ -577,6 +590,8 @@ public class LevelLoader
 		NPC.freeStaticModels();
 		BOBWoodPlank.freeStaticModels();
 		ManiaSonicModels.freeStaticModels();
+		GoronKid.freeStaticModels();
+		GoronElder.freeStaticModels();
 	}
 	
 	private static float nextFloat(Scanner input)

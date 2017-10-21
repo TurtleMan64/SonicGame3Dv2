@@ -22,6 +22,8 @@ public class ParticleResources
 	public static ParticleTexture textureExplosion1 = null;
 	public static ParticleTexture textureExplosion2 = null;
 	public static ParticleTexture textureBlackFade = null;
+	public static ParticleTexture textureTear1 = null;
+	public static ParticleTexture textureTear2 = null;
 	
 	public static void loadParticles()
 	{
@@ -43,5 +45,7 @@ public class ParticleResources
 		textureExplosion1 = new ParticleTexture(MainGameLoop.gameLoader.loadTexture("Models/Particle/Explosion1Atlas"), 4, 0.8f, 0);
 		textureExplosion2 = new ParticleTexture(MainGameLoop.gameLoader.loadTexture("Models/Particle/Explosion2Atlas"), 4, 0.8f, 0);
 		textureBlackFade = new ParticleTexture(MainGameLoop.gameLoader.loadTexture("Models/Particle/BlackFadeAtlas"), 2, 1f, 0);
+		textureTear1 = new ParticleTexture(MainGameLoop.gameLoader.loadTexture("Models/Particle/Tear1"), 1, 1f, 0);
+		textureTear2 = new ParticleTexture(MainGameLoop.gameLoader.loadTexture("Models/Particle/Tear2"), 1, 1f, 0);
 	}
 }

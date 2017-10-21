@@ -63,9 +63,13 @@ public class AudioSources
 			buffers.add(AudioMaster.loadSound(("/res/Audio/sonic/SGen/StompLand.wav")));                                            //33
 			buffers.add(AudioMaster.loadSound(("/res/Audio/sonic/S1/S1_Death.wav")));                                               //34
 			buffers.add(AudioMaster.loadSound(("/res/Audio/sonic/S1/S1_UnlockSomething.wav")));                                     //35
-			//buffers.add(AudioMaster.loadSound(("/res/Audio/sonic/SADX/AzureBlueWorld.ogg")));                                       //36
-			//buffers.add(AudioMaster.loadSound(("/res/Audio/sonic/SADX/SpeedHighway.wav")));                                         //37
-			//buffers.add(AudioMaster.loadSound(("/res/Audio/sonic/SADX/SandHill.wav")));                                             //38
+			buffers.add(AudioMaster.loadSound(("/res/Audio/goron/BabyGoron_Cry1.wav")));                                            //36
+			buffers.add(AudioMaster.loadSound(("/res/Audio/goron/BabyGoron_Cry2.wav")));                                            //37
+			buffers.add(AudioMaster.loadSound(("/res/Audio/goron/BabyGoron_Cry3.wav")));                                            //38
+			buffers.add(AudioMaster.loadSound(("/res/Audio/goron/BabyGoron_Doze.wav")));                                            //39
+			//buffers.add(AudioMaster.loadSound(("/res/Audio/sonic/SADX/AzureBlueWorld.ogg")));                                       //40
+			//buffers.add(AudioMaster.loadSound(("/res/Audio/sonic/SADX/SpeedHighway.wav")));                                         //41
+			//buffers.add(AudioMaster.loadSound(("/res/Audio/sonic/SADX/SandHill.wav")));                                             //42
 		}
 		catch (FileNotFoundException e)
 		{
