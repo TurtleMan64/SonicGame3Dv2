@@ -33,6 +33,7 @@ newmtl material_AFB2F8.001
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.05
 	d 1.000000
+	sound 2
 	illum 2
 	map_Kd sea2_22.png
 	map_Ka sea2_22.png
@@ -93,6 +94,7 @@ newmtl material_B030D0.001
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.05
 	d 1.000000
+	sound 3
 	illum 2
 	map_Kd m128_cos035.png
 	map_Ka m128_cos035.png
@@ -105,6 +107,7 @@ newmtl material_B030E4.001
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.05
 	d 1.000000
+	sound 3
 	illum 2
 	map_Kd m64_sea2_3.png
 	map_Ka m64_sea2_3.png
@@ -117,6 +120,7 @@ newmtl material_B030F8.001
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.05
 	d 1.000000
+	sound 3
 	illum 2
 	map_Kd m128_cos020.png
 	map_Ka m128_cos020.png
@@ -129,6 +133,7 @@ newmtl material_B0540C.001
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.05
 	d 1.000000
+	sound 3
 	illum 2
 	map_Kd m64_sea2_1.png
 	map_Ka m64_sea2_1.png
@@ -141,6 +146,7 @@ newmtl material_B06DA4.001
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.05
 	d 1.000000
+	sound 3
 	illum 2
 	map_Kd m128_cos012.png
 	map_Ka m128_cos012.png
@@ -177,6 +183,7 @@ newmtl material_B16408.001
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.05
 	d 1.000000
+	sound 2
 	illum 2
 	map_Kd sea2_15.png
 	map_Ka sea2_15.png
@@ -357,6 +364,7 @@ newmtl material_B4CCB0.001
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.05
 	d 1.000000
+	sound 2
 	illum 2
 	map_Kd sea2_17.png
 	map_Ka sea2_17.png
@@ -369,6 +377,7 @@ newmtl material_B51718.001
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.05
 	d 1.000000
+	sound 2
 	illum 2
 	map_Kd m128_cos014.png
 	map_Ka m128_cos014.png
@@ -489,6 +498,7 @@ newmtl material_BA55AC.001
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.05
 	d 1.000000
+	sound 3
 	illum 2
 	map_Kd m128_cos003.png
 	map_Ka m128_cos003.png
@@ -501,6 +511,7 @@ newmtl material_BA6BD4.002
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.05
 	d 1.000000
+	sound 3
 	illum 2
 	map_Kd m64_cos018.png
 	map_Ka m64_cos018.png
@@ -513,6 +524,7 @@ newmtl material_BA6BFC.002
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.05
 	d 1.000000
+	sound 3
 	illum 2
 	map_Kd m64_cos017.png
 	map_Ka m64_cos017.png
@@ -525,6 +537,7 @@ newmtl material_BA6C10.001
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.05
 	d 1.000000
+	sound 3
 	illum 2
 	map_Kd m64_cos013.png
 	map_Ka m64_cos013.png
@@ -537,6 +550,7 @@ newmtl material_BA6C24.002
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.05
 	d 1.000000
+	sound 3
 	illum 2
 	map_Kd m64_cos022.png
 	map_Ka m64_cos022.png
@@ -549,6 +563,7 @@ newmtl material_BA7EB8.002
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.05
 	d 1.000000
+	sound 3
 	illum 2
 	map_Kd m128_cos002.png
 	map_Ka m128_cos002.png
@@ -597,6 +612,7 @@ newmtl material_BB3C58.002
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.05
 	d 1.000000
+	sound 2
 	illum 2
 	map_Kd m64_cos003.png
 	map_Ka m64_cos003.png
@@ -609,6 +625,7 @@ newmtl material_BB3C6C.002
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.05
 	d 1.000000
+	sound 2
 	illum 2
 	map_Kd m64_cos001.png
 	map_Ka m64_cos001.png
@@ -645,6 +662,7 @@ newmtl material_BB84D4.002
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.05
 	d 1.000000
+	sound 2
 	illum 2
 	map_Kd m64_cos002.png
 	map_Ka m64_cos002.png
@@ -669,6 +687,7 @@ newmtl material_BBC67C.001
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.05
 	d 1.000000
+	sound 2
 	illum 2
 	map_Kd m64_cos009.png
 	map_Ka m64_cos009.png
@@ -681,6 +700,7 @@ newmtl material_BBE9E0.002
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.05
 	d 1.000000
+	sound 3
 	illum 2
 	map_Kd m64_cos011.png
 	map_Ka m64_cos011.png
@@ -692,6 +712,7 @@ newmtl material_BBE9F4.002
 	Ks 1.000000 1.000000 1.000000
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.05
+	sound 3
 	d 1.000000
 	illum 2
 	map_Kd m64_cos010.png
@@ -705,6 +726,7 @@ newmtl material_BBEAE4.002
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.05
 	d 1.000000
+	sound 2
 	illum 2
 	map_Kd m64_cos023.png
 	map_Ka m64_cos023.png
@@ -718,6 +740,7 @@ newmtl material_BC3B08.001
 	Ni 0.05
 	d 1.000000
 	illum 2
+	sound 2
 	map_Kd m128_cos008.png
 	map_Ka m128_cos008.png
 
@@ -742,6 +765,7 @@ newmtl material_BC8804.001
 	Ni 0.05
 	d 1.000000
 	illum 2
+	sound 3
 	map_Kd m128_cos004.png
 	map_Ka m128_cos004.png
 
@@ -753,6 +777,7 @@ newmtl material_BC8818.001
 	Ke 0.000000 0.000000 0.000000
 	Ni 0.05
 	d 1.000000
+	sound 3
 	illum 2
 	map_Kd m128_cos005.png
 	map_Ka m128_cos005.png
