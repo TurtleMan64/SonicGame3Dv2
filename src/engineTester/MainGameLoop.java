@@ -285,9 +285,9 @@ public class MainGameLoop
 		//TexturedModel[] pipeTexturedModels = ConvenientMethods.loadModel("Models/Unagi/", "Unagi", loader);
 		TexturedModel[] sunTexturedModels = ConvenientMethods.loadModel("Models/Sky/", "SunFlip");
 		
-		TexturedModel[] modelBall = ConvenientMethods.loadModel("Models/Ring/", "Ring");
-		Entity myBall = new Entity(modelBall, new Vector3f(0,40,0));
-		myBall.setVisibility(true);
+		//TexturedModel[] modelBall = ConvenientMethods.loadModel("Models/Ring/", "Ring");
+		//Entity myBall = new Entity(modelBall, new Vector3f(0,40,0));
+		//myBall.setVisibility(true);
 		//TexturedModel[] eggTexturedModels = ConvenientMethods.loadModel("Models/EmuEgg/", "EmuEgg", loader);
 		//TexturedModel[] measureCubeTexturedModels = ConvenientMethods.loadModel("Models/Box/", "MeasureCube", loader);
 		

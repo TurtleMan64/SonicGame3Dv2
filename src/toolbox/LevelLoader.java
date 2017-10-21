@@ -24,6 +24,7 @@ import entities.Entity;
 import entities.GoalSign;
 import entities.GoalTrigger;
 import entities.ItemCapsule;
+import entities.KillBox;
 import entities.ManiaSonicModels;
 import entities.Motobug;
 import entities.NPC;
@@ -534,6 +535,11 @@ public class LevelLoader
 				BOBWoodPlank.allocateStaticModels();
 				entities.add(new BOBWoodPlank(new Vector3f(nextFloat(in), nextFloat(in), nextFloat(in)),
 														 nextFloat(in)));
+				return;
+				
+			case 34: //Kill Box
+				entities.add(new KillBox(nextFloat(in), nextFloat(in), nextFloat(in),
+										 nextFloat(in), nextFloat(in), nextFloat(in)));
 				return;
 				
 			default:
