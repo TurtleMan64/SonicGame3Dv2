@@ -1,5 +1,11 @@
 package toolbox;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.util.Scanner;
+
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
@@ -35,9 +41,17 @@ public class Input
 	public static float mousePreviousX = 0;
 	public static float mousePreviousY = 0;
 	
+	private static float mouseSensitivityX = 0.25f;
+	private static float mouseSensitivityY = 0.25f;
+	
+	private static float stickSensitivityX = 2.5f;
+	private static float stickSensitivityY = 2.5f;
+	
+	private static float triggerSensitivity = 2;
+	
 	public static void init()
 	{
-		
+		readSetupFile();
 	}
 	
 	public static void refresh()
@@ -146,8 +160,8 @@ public class Input
 		cameraInputX = 0;
 		if (MainGameLoop.freeMouse == false)
 		{
-			cameraInputY += -0.25f*(Mouse.getY()-mousePreviousY);
-			cameraInputX += 0.25f*(Mouse.getX()-mousePreviousX);
+			cameraInputY += -mouseSensitivityY*(Mouse.getY()-mousePreviousY);
+			cameraInputX += mouseSensitivityX*(Mouse.getX()-mousePreviousX);
 			Mouse.setCursorPosition(DisplayManager.getWidth()/2, DisplayManager.getHeight()/2);
 			mousePreviousX = Mouse.getX();
 			mousePreviousY = Mouse.getY();
@@ -155,13 +169,13 @@ public class Input
 		
 		if ((Joystick.joystickExists() && Joystick.getXRight() != 0) || (Joystick.joystickExists() && Joystick.getYRight() != 0))
 		{
-			cameraInputY += 2.5f*(Joystick.getYRight());
-			cameraInputX += 2.5f*(Joystick.getXRight());
+			cameraInputY += stickSensitivityY*(Joystick.getYRight());
+			cameraInputX += stickSensitivityX*(Joystick.getXRight());
 		}
 		
 		if (Joystick.joystickExists())
 		{
-			cameraInputX += 2*(Joystick.getLTrigger()-Joystick.getRTrigger());
+			cameraInputX += triggerSensitivity*(Joystick.getLTrigger()-Joystick.getRTrigger());
 		}
 		
 		if (Mouse.hasWheel())
@@ -171,6 +185,77 @@ public class Input
 		if (Joystick.joystickExists())
 		{
 			zoomInput+=Joystick.getDPadY();
+		}
+	}
+	
+	private static void readSetupFile()
+	{
+		try
+		{
+	    	InputStreamReader isr = null;
+	    	try
+	        {
+	    		String fileName = "Data/CameraSensitivity.ini";
+	            FileInputStream inStream = new FileInputStream(new File(fileName));
+	            isr = new InputStreamReader(inStream);
+	        }
+	        catch (NullPointerException e)
+	        {
+	        	System.out.println("Couldnt load input stream: 'Data/CameraSensitivity.ini'");
+	            return;
+	        }
+	    	
+	        BufferedReader breader = new BufferedReader(isr);
+			
+			Scanner reader = new Scanner(breader);
+			
+			boolean loop = true;
+			while (loop)
+			{
+				if (!reader.hasNextLine())
+				{
+					loop = false;
+					break;
+				}
+				String line = reader.nextLine();
+				if (line == null)
+				{
+					loop = false;
+					break;
+				}
+				String[] info = line.split(" ");
+				if (info.length >= 2)
+				{
+					if (info[0].equals("Mouse_X"))
+					{
+						mouseSensitivityX = Float.parseFloat(info[1]);
+					}
+					else if (info[0].equals("Mouse_Y"))
+					{
+						mouseSensitivityY = Float.parseFloat(info[1]);
+					}
+					else if (info[0].equals("Stick_X"))
+					{
+						stickSensitivityX = Float.parseFloat(info[1]);
+					}
+					else if (info[0].equals("Stick_Y"))
+					{
+						stickSensitivityY = Float.parseFloat(info[1]);
+					}
+					else if (info[0].equals("Triggers"))
+					{
+						triggerSensitivity = Float.parseFloat(info[1]);
+					}
+				}
+			}
+			
+			reader.close();
+		}
+		catch (Exception e)
+		{
+			System.out.println("Problem when trying to read 'Data/CameraSensitivity.ini'");
+			e.printStackTrace();
+			System.out.println("Going to use the default sensitivity instead...");
 		}
 	}
 }

@@ -240,6 +240,8 @@ public class MainGameLoop
 		Joystick.readSetupFile();
 		loadSaveFile();
 		
+		Input.init();
+		
 		DisplayManager.createDisplay();
 		
 		NetworkManager.init();
