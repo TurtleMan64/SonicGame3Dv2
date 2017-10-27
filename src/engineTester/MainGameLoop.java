@@ -945,6 +945,7 @@ public class MainGameLoop
         
         int maniaSonic = in.nextInt();
         if (maniaSonic == 67895) unlockedManiaSonic = true;
+        unlockedManiaSonic = true;
         
         in.close();
 	}

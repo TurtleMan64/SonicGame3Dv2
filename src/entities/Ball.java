@@ -605,9 +605,9 @@ public class Ball extends Entity
 				yVel += hoverAccel*time;
 			}
 			
-			if(Keyboard.isKeyDown(Keyboard.KEY_J))
+			//if(Keyboard.isKeyDown(Keyboard.KEY_J))
 			{
-				yVel+=0.5f*time;
+				//yVel+=0.5f*time;
 			}
 		}
 		

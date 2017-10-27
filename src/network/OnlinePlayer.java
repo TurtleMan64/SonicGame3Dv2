@@ -74,6 +74,21 @@ public class OnlinePlayer
 	private static TexturedModel[] modelRightThigh3       = null;
 	private static TexturedModel[] modelRightShin3        = null;
 	private static TexturedModel[] modelRightFoot3        = null;
+	
+	private static TexturedModel[] modelBody4             = null;
+	private static TexturedModel[] modelHead4             = null;
+	private static TexturedModel[] modelLeftHumerus4      = null;
+	private static TexturedModel[] modelLeftForearm4      = null;
+	private static TexturedModel[] modelLeftHand4         = null;
+	private static TexturedModel[] modelLeftThigh4        = null;
+	private static TexturedModel[] modelLeftShin4         = null;
+	private static TexturedModel[] modelLeftFoot4         = null;
+	private static TexturedModel[] modelRightHumerus4     = null;
+	private static TexturedModel[] modelRightForearm4     = null;
+	private static TexturedModel[] modelRightHand4        = null;
+	private static TexturedModel[] modelRightThigh4       = null;
+	private static TexturedModel[] modelRightShin4        = null;
+	private static TexturedModel[] modelRightFoot4        = null;
 
 	//private Entity myBall;
 	
@@ -141,16 +156,34 @@ public class OnlinePlayer
 	private Limb myRightFoot3;
 	private float displayHeightOffset3;
 	
+	private Body myBody4;
+	private Limb myHead4;
+	private Limb myLeftHumerus4;
+	private Limb myLeftForearm4;
+	private Limb myLeftHand4;
+	private Limb myLeftThigh4;
+	private Limb myLeftShin4;
+	private Limb myLeftFoot4;
+	private Limb myRightHumerus4;
+	private Limb myRightForearm4;
+	private Limb myRightHand4;
+	private Limb myRightThigh4;
+	private Limb myRightShin4;
+	private Limb myRightFoot4;
+	private float displayHeightOffset4;
+	
 	
 	private LinkedList<Entity> models0;
 	private LinkedList<Entity> models1;
 	private LinkedList<Entity> models2;
 	private LinkedList<Entity> models3;
+	private LinkedList<Entity> models4;
 	
 	private LinkedList<Limb> limbs0;
 	private LinkedList<Limb> limbs1;
 	private LinkedList<Limb> limbs2;
 	private LinkedList<Limb> limbs3;
+	private LinkedList<Limb> limbs4;
 	
 	public int modelID;
 	public String name;
@@ -230,6 +263,21 @@ public class OnlinePlayer
 		modelRightShin3 = ConvenientMethods.loadModel("Models/Dage4Aquatic/", "Shin");
 		modelRightFoot3 = ConvenientMethods.loadModel("Models/Dage4Aquatic/", "Foot");
 		
+		modelBody4 = ConvenientMethods.loadModel("Models/SonicMania/", "Body");
+		modelHead4 = ConvenientMethods.loadModel("Models/SonicMania/", "Head");
+		modelLeftHumerus4 = ConvenientMethods.loadModel("Models/SonicMania/", "Humerus");
+		modelLeftForearm4 = ConvenientMethods.loadModel("Models/SonicMania/", "Forearm");
+		modelLeftHand4 = ConvenientMethods.loadModel("Models/SonicMania/", "HandLeft");
+		modelLeftThigh4 = ConvenientMethods.loadModel("Models/SonicMania/", "Thigh");
+		modelLeftShin4 = ConvenientMethods.loadModel("Models/SonicMania/", "Shin");
+		modelLeftFoot4 = ConvenientMethods.loadModel("Models/SonicMania/", "ShoeLeft");
+		modelRightHumerus4 = ConvenientMethods.loadModel("Models/SonicMania/", "Humerus");
+		modelRightForearm4 = ConvenientMethods.loadModel("Models/SonicMania/", "Forearm");
+		modelRightHand4 = ConvenientMethods.loadModel("Models/SonicMania/", "HandRight");
+		modelRightThigh4 = ConvenientMethods.loadModel("Models/SonicMania/", "Thigh");
+		modelRightShin4 = ConvenientMethods.loadModel("Models/SonicMania/", "Shin");
+		modelRightFoot4 = ConvenientMethods.loadModel("Models/SonicMania/", "ShoeRight");
+		
 	}
 	
 	public OnlinePlayer()
@@ -247,11 +295,13 @@ public class OnlinePlayer
 		models1 = new LinkedList<Entity>();
 		models2 = new LinkedList<Entity>();
 		models3 = new LinkedList<Entity>();
+		models4 = new LinkedList<Entity>();
 		
 		limbs0 = new LinkedList<Limb>();
 		limbs1 = new LinkedList<Limb>();
 		limbs2 = new LinkedList<Limb>();
 		limbs3 = new LinkedList<Limb>();
+		limbs4 = new LinkedList<Limb>();
 		//models.add(myBall);
 		
 		displayHeightOffset0 = 0;
@@ -319,6 +369,22 @@ public class OnlinePlayer
 		myRightShin3 =   new Limb(modelRightShin3,    1.1f, 0, 0, null, myRightThigh3);
 		myRightFoot3 =   new Limb(modelRightFoot3,    1.1f, 0, 0, null, myRightShin3);
 		
+		displayHeightOffset4 = -.25f;
+		myBody4 =        new Body(modelBody4);
+		myHead4 =        new Limb(modelHead4,         0.3f, 1.2f, 0,       myBody4, null);
+		myLeftHumerus4 = new Limb(modelLeftHumerus4,  0, 0.9f, -0.9f,   myBody4, null);
+		myLeftForearm4 = new Limb(modelLeftForearm4,  1.3f, 0, 0, null, myLeftHumerus4);
+		myLeftHand4 =    new Limb(modelLeftHand4,     1.3f, 0, 0, null, myLeftForearm4);
+		myLeftThigh4 =   new Limb(modelLeftThigh4,    0, -0.9f, -0.3f,  myBody4, null);
+		myLeftShin4 =    new Limb(modelLeftShin4,     1.3f, 0, 0, null, myLeftThigh4);
+		myLeftFoot4 =    new Limb(modelLeftFoot4,     1.1f, 0, 0, null, myLeftShin4);
+		myRightHumerus4 =new Limb(modelRightHumerus4, 0, 0.9f, 0.9f,    myBody4, null);
+		myRightForearm4 =new Limb(modelRightForearm4, 1.3f, 0, 0, null, myRightHumerus4);
+		myRightHand4 =   new Limb(modelRightHand4,    1.3f, 0, 0, null, myRightForearm4);
+		myRightThigh4 =  new Limb(modelRightThigh4,   0, -0.9f, 0.3f,   myBody4, null);
+		myRightShin4 =   new Limb(modelRightShin4,    1.3f, 0, 0, null, myRightThigh4);
+		myRightFoot4 =   new Limb(modelRightFoot4,    1.1f, 0, 0, null, myRightShin4);
+		
 		AnimationResources.assignAnimationsHuman(myBody0, myHead0,
 				myLeftHumerus0, myLeftForearm0, myLeftHand0,
 				myRightHumerus0, myRightForearm0, myRightHand0,
@@ -342,6 +408,12 @@ public class OnlinePlayer
 				myRightHumerus3, myRightForearm3, myRightHand3,
 				myLeftThigh3, myLeftShin3, myLeftFoot3,
 				myRightThigh3, myRightShin3, myRightFoot3);
+		
+		AnimationResources.assignAnimationsHuman(myBody4, myHead4,
+				myLeftHumerus4, myLeftForearm4, myLeftHand4,
+				myRightHumerus4, myRightForearm4, myRightHand4,
+				myLeftThigh4, myLeftShin4, myLeftFoot4,
+				myRightThigh4, myRightShin4, myRightFoot4);
 		
 		models0.add(myBody0);
 		models0.add(myHead0);
@@ -454,6 +526,34 @@ public class OnlinePlayer
 		limbs3.add(myRightThigh3);
 		limbs3.add(myRightShin3);
 		limbs3.add(myRightFoot3);
+		
+		models4.add(myBody4);
+		models4.add(myHead4);
+		models4.add(myLeftHumerus4);
+		models4.add(myLeftForearm4);
+		models4.add(myLeftHand4);
+		models4.add(myLeftThigh4);
+		models4.add(myLeftShin4);
+		models4.add(myLeftFoot4);
+		models4.add(myRightHumerus4);
+		models4.add(myRightForearm4);
+		models4.add(myRightHand4);
+		models4.add(myRightThigh4);
+		models4.add(myRightShin4);
+		models4.add(myRightFoot4);
+		limbs4.add(myHead4);
+		limbs4.add(myLeftHumerus4);
+		limbs4.add(myLeftForearm4);
+		limbs4.add(myLeftHand4);
+		limbs4.add(myLeftThigh4);
+		limbs4.add(myLeftShin4);
+		limbs4.add(myLeftFoot4);
+		limbs4.add(myRightHumerus4);
+		limbs4.add(myRightForearm4);
+		limbs4.add(myRightHand4);
+		limbs4.add(myRightThigh4);
+		limbs4.add(myRightShin4);
+		limbs4.add(myRightFoot4);
 	}
 	
 	public void animate()
@@ -468,6 +568,7 @@ public class OnlinePlayer
 		setLimbsVisibility(myBody1, limbs1, false);
 		setLimbsVisibility(myBody2, limbs2, false);
 		setLimbsVisibility(myBody3, limbs3, false);
+		setLimbsVisibility(myBody4, limbs4, false);
 		
 		Vector3f dispPos = new Vector3f(pos);
 		
@@ -499,6 +600,13 @@ public class OnlinePlayer
 				dispPos.y+=displayHeightOffset3;
 				myBody3.setBaseOrientation(dispPos, yRot, zRot);
 				updateLimbs(myBody3, limbs3, animID, time);
+				break;
+				
+			case 4:
+				setLimbsVisibility(myBody4, limbs4, true);
+				dispPos.y+=displayHeightOffset4;
+				myBody4.setBaseOrientation(dispPos, yRot, zRot);
+				updateLimbs(myBody4, limbs4, animID, time);
 				break;
 				
 			default:
@@ -547,6 +655,9 @@ public class OnlinePlayer
 				
 			case 3:
 				return models3;
+				
+			case 4:
+				return models4;
 				
 			default:
 				break;
